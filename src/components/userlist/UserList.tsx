@@ -1,12 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
+import React, { useEffect } from "react";
+import { fetchUserList } from "../../redux/saga/userListSaga";
+import { useDispatch } from "react-redux";
 
 // type Props = {}
 
 const UserList = (props: Props) => {
-  return (
-    <div>UserList</div>
-  )
-}
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUserList());
+  }, [dispatch]);
+  console.log(fetchUserList);
+  return <div>UserList</div>;
+};
 
-export default UserList
+export default UserList;

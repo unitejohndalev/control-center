@@ -1,34 +1,5 @@
-// import React from "react";
-// import {
-//   FormContainer,
-//   AddContainer,
-//   FormTitle,
-//   ButtonLetter,
-// } from "./AddStyles";
-// import { Button, TextField } from "@mui/material";
-// import { useDispatch, useSelector } from "react-redux";
 
-// const Add: React.FC = () => {
-//   const dispatch = useDispatch();
-//   const existingUsers = useSelector((state: any) => state.user.personValue);
-
-//   console.log(existingUsers);
-//   return (
-//     <AddContainer>
-//       <FormContainer>
-//         <FormTitle>Control Center</FormTitle>
-//         <TextField id="outlined-basic" label="UserName" variant="outlined" />
-//         <TextField id="outlined-basic" label="Password" variant="outlined" />
-//         <Button variant="contained" className="text-[2rem]">
-//           <ButtonLetter>Log In</ButtonLetter>
-//         </Button>
-//       </FormContainer>
-//     </AddContainer>
-//   );
-// };
-
-// export default Add;
-import React, { useState } from "react";
+import React from "react";
 import {
   FormContainer,
   AddContainer,
@@ -36,27 +7,34 @@ import {
   ButtonLetter,
 } from "./AddStyles";
 import { Button, TextField } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { setUserField } from "../../redux/state/loginState";
 
 const Add: React.FC = () => {
   const existingUsers = useSelector((state: any) => state.user.personValue);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const userInput = useSelector((state: any) => state.userInput);
 
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const { username, password } = userInput;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    dispatch(setUserField({ ...userInput, [name]: value }));
+  };
+
+  const handleLoginSubmit = () => {
     // Check if username and password are empty
-    if (!username.trim() || !password.trim()) {
+    if (!userInput.username.trim() || !userInput.password.trim()) {
       alert("Please fill in all fields");
       return;
     }
 
     // Check if username and password match any existing user
     const user = existingUsers.find(
-      (user: any) => user.name === username && user.password === password
+      (user: any) => user.username === username && user.password === password
     );
     if (user) {
       navigate("/userlist");
@@ -64,31 +42,30 @@ const Add: React.FC = () => {
       alert("Invalid username or password");
     }
   };
-  console.log(existingUsers);
+  
 
   return (
     <AddContainer>
-      <FormContainer>
+      <FormContainer onSubmit={handleLoginSubmit}>
         <FormTitle>Control Center</FormTitle>
         <TextField
           id="outlined-basic"
-          label="UserName"
+          label="Username"
           variant="outlined"
+          name="username"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleChange}
         />
         <TextField
           id="outlined-basic"
           label="Password"
           variant="outlined"
+          name="password"
           value={password}
           type="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleChange}
         />
-        <Button
-          variant="contained"
-          className="text-[2rem]"
-          onClick={handleLogin}>
+        <Button variant="contained" type="submit">
           <ButtonLetter>Log In</ButtonLetter>
         </Button>
       </FormContainer>
