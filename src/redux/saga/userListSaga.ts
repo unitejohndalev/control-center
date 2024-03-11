@@ -1,13 +1,17 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { getUserListSuccess } from "../state/userListState";
 import axios from "axios";
+import { getRolesSuccess } from "../state/loginState";
+
 
 // GET ALL
-export function* fetchUserList(): any {
-  const client = yield call(() =>
+function* fetchRoles(): any {
+	const devPhase = yield call(() =>
     axios.get("http://localhost:3000/profile").then((res) => res.data)
   );
-  yield put(getUserListSuccess(client));
+	yield put(getRolesSuccess(devPhase));
 }
 
+export function* roleSaga() {
+	yield takeEvery("roles/getRolesFetch", fetchRoles);
+}
 

@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   FormContainer,
   AddContainer,
@@ -11,14 +11,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserField } from "../../redux/state/loginState";
 
+
 const Add: React.FC = () => {
+  //mock data stored in user in store
   const existingUsers = useSelector((state: any) => state.user.personValue);
+
+  //empty state stored in userInput in store
   const userInput = useSelector((state: any) => state.userInput);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { username, password } = userInput;
+ 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

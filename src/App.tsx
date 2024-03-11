@@ -1,12 +1,10 @@
-import { Routes, Route } from "react-router-dom"
-import Login from "./components/login/Login"
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Routes, Route } from "react-router-dom";
+import Login from "./components/login/Login";
 import UserList from "./components/userlist/UserList";
 
 
-
-function App() {
-
-
+const App: React.FC = () => {
   return (
     <>
       <Routes>
@@ -15,6 +13,6 @@ function App() {
       </Routes>
     </>
   );
-}
+};
 
-export default App
+export default App;

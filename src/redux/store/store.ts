@@ -1,22 +1,21 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { userReducer, InputReducer } from "../state/loginState";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { userListReducer } from "../state/userListState";
-import rootSaga from "../saga/rootSaga";
 import createSagaMiddleware from "redux-saga";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import rootSaga from "../saga/rootSaga";
+import { userReducer } from "../state/loginState";
 
 const saga = createSagaMiddleware();
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    user: userReducer,
-    userInput: InputReducer,
-    userList: userListReducer,
+    userReducer: userReducer,
+    // add more reducers here
   },
-  middleware:[saga],
+  middleware: getDefaultMiddleware({
+    thunk: true,
+    serializableCheck: false,
+  }),
 });
 
 saga.run(rootSaga);
-export const useAppDispatch: () => typeof store.dispatch = useDispatch;
-export const useAppSelector: TypedUseSelectorHook<
-  ReturnType<typeof store.getState>
-> = useSelector;
+
+export type RootState = ReturnType<typeof store.getState>;
+export default store;

@@ -1,39 +1,35 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface User {
-  id: number;
-  username: string;
-  password: string;
-}
-
-export interface UserState {
-  personValue: User[];
-}
-
-export interface UserInput {
-  username: string;
-  password: string;
-}
+import { User, UserState, UserInput } from "../../types/Types";
 
 const userInitialState: UserState = {
   personValue: [
     {
       id: 1,
-      username: "junite", // Example name
-      password: "tsukiden+", // Example password
+      username: "junite",
+      password: "tsukiden+",
     },
   ],
 };
 
 const UserSlice = createSlice({
   name: "person",
-  initialState: userInitialState,
+  initialState: {
+    personValue: [],
+
+  },
   reducers: {
-    // showPerson: (state) => {
-    //   return state.personValue;
+    // setUserProfile: (state, action: PayloadAction<User[]>) => {
+    //   state.personValue = action.payload;
     // },
+    getRolesSuccess: (state, action) => {
+      state.personValue = action.payload;
+   
+    },
   },
 });
+
+export const { getRolesSuccess } = UserSlice.actions
+export const userReducer = UserSlice.reducer;
 
 const inputInitialState: UserInput = {
   username: "",
@@ -49,9 +45,6 @@ const InputSlice = createSlice({
     },
   },
 });
-
-// export const { showPerson } = UserSlice.actions;
-export const userReducer = UserSlice.reducer;
 
 export const { setUserField } = InputSlice.actions;
 export const InputReducer = InputSlice.reducer;
