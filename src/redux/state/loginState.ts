@@ -13,10 +13,7 @@ const userInitialState: UserState = {
 
 const UserSlice = createSlice({
   name: "person",
-  initialState: {
-    personValue: [],
-
-  },
+  initialState: userInitialState,
   reducers: {
     // setUserProfile: (state, action: PayloadAction<User[]>) => {
     //   state.personValue = action.payload;

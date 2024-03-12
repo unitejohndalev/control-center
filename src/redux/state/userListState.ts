@@ -1,28 +1,36 @@
+// userListState.ts
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface UserList {
-  id: string,
-  username:string,
-  password:string
-}
+// export interface User {
+//   id: string;
+//   username: string;
+//   password: string;
+// }
 
-export interface UserState {
-  userListValue: UserList[]
-}
-const userInitialState : UserState = {
-    userListValue:[]
-}
+// export interface UserState {
+//   userList: User[];
+// }
+
+// const initialState: UserState = {
+//   userList: [],
+// };
 
 const userListSlice = createSlice({
   name: "userList",
-  initialState: userInitialState,
+  initialState: {
+    userList: [],
+    isLoading: false,
+  },
   reducers: {
+    getUserListFetch: (state) => {
+      state.isLoading = true;
+    },
     getUserListSuccess: (state, action) => {
-      state.userListValue = action.payload;
-      
+      state.userList = action.payload;
+      state.isLoading = false;
     },
   },
 });
 
-export const { getUserListSuccess } = userListSlice.actions
-export const userListReducer = userListSlice.reducer
+export const { getUserListFetch,getUserListSuccess } = userListSlice.actions;
+export const userListReducer = userListSlice.reducer;

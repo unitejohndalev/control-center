@@ -1,5 +1,4 @@
-
-import React, { useEffect } from "react";
+import React from "react";
 import {
   FormContainer,
   AddContainer,
@@ -11,25 +10,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserField } from "../../redux/state/loginState";
 
-
 const Add: React.FC = () => {
+
   //mock data stored in user in store
-  const existingUsers = useSelector((state: any) => state.user.personValue);
+  const existingUsers = useSelector(
+    (state: any) => state.userReducer.personValue
+  );
 
-  //empty state stored in userInput in store
-  const userInput = useSelector((state: any) => state.userInput);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const { username, password } = userInput;
  
 
+  //empty state stored in userInput in store
+  const userInput = useSelector((state: any) => state.inputReducer);
+
+  //to dispatch functions from redux toolkit
+  const dispatch = useDispatch();
+
+  //us navigation for navigating UI
+  const navigate = useNavigate();
+
+  //destructure userInput
+  const { username, password } = userInput;
+
+  //input function, setting the state into empty string
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     dispatch(setUserField({ ...userInput, [name]: value }));
   };
 
+  //submit function, comparing the value of the input to the value of the mock data
+  //if values equal, navigate to userList UI
   const handleLoginSubmit = () => {
     // Check if username and password are empty
     if (!userInput.username.trim() || !userInput.password.trim()) {
@@ -47,7 +56,6 @@ const Add: React.FC = () => {
       alert("Invalid username or password");
     }
   };
-  
 
   return (
     <AddContainer>
