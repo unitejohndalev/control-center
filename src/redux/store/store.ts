@@ -4,11 +4,17 @@ import createSagaMiddleware from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
 import rootSaga from "../saga/rootSaga";
 import { userListReducer } from "../state/userListState";
+import { themeReducer } from "../state/navState";
+
 
 
 const saga = createSagaMiddleware();
 export const store = configureStore({
   reducer: {
+    //navbar
+    themeReducer:themeReducer,
+
+
     userReducer: userReducer,
     inputReducer: InputReducer,
     userListReducer: userListReducer,

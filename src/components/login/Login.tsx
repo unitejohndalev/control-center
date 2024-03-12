@@ -1,14 +1,10 @@
 import React from "react";
-import {
-  FormContainer,
-  AddContainer,
-  FormTitle,
-  ButtonLetter,
-} from "./AddStyles";
+import LoginStyle from "./Login.module.css"
 import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserField } from "../../redux/state/loginState";
+import { RootState } from "../../redux/store/store";
 
 const Add: React.FC = () => {
 
@@ -57,10 +53,22 @@ const Add: React.FC = () => {
     }
   };
 
+   const themeState = useSelector(
+     (state: RootState) => state.themeReducer.themeState
+   );
+ 
+
   return (
-    <AddContainer>
-      <FormContainer onSubmit={handleLoginSubmit}>
-        <FormTitle>Control Center</FormTitle>
+    <div className={LoginStyle.LoginContainer}>
+      <form
+        className={
+          themeState
+            ? LoginStyle.DarkFormContainer
+            : LoginStyle.LightFormContainer
+            
+        }
+        onSubmit={handleLoginSubmit}>
+        <p className={LoginStyle.FormTitle}>Control Center</p>
         <TextField
           id="outlined-basic"
           label="Username"
@@ -79,10 +87,10 @@ const Add: React.FC = () => {
           onChange={handleChange}
         />
         <Button variant="contained" type="submit">
-          <ButtonLetter>Log In</ButtonLetter>
+          <p className={LoginStyle.ButtonLetter}>Log In</p>
         </Button>
-      </FormContainer>
-    </AddContainer>
+      </form>
+    </div>
   );
 };
 

@@ -1,0 +1,19 @@
+.NavbarContainer {
+  padding: 1rem 2rem;
+  position: fixed;
+  right: 0;
+}
+
+.iconContainer {
+  cursor: pointer;
+}
+
+.lightIcon {
+  font-size: 1.3rem;
+}
+
+.darkIcon {
+  font-size: 1.3rem;
+  color: #fff;
+}
+
