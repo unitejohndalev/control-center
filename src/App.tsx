@@ -8,9 +8,9 @@ import { RootState } from "./redux/store/store";
 
 const App: React.FC = () => {
   const themeState = useSelector((state: RootState) => state.themeReducer.themeState);
+  
   return (
     <div className={themeState ? "dark" : "light"}>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/userlist" element={<UserList />} />

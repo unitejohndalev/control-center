@@ -5,6 +5,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import rootSaga from "../saga/rootSaga";
 import { userListReducer } from "../state/userListState";
 import { themeReducer } from "../state/navState";
+import { loadingReducer } from "../state/loadingState";
+
 
 
 
@@ -12,12 +14,11 @@ const saga = createSagaMiddleware();
 export const store = configureStore({
   reducer: {
     //navbar
-    themeReducer:themeReducer,
-
-
+    themeReducer: themeReducer,
     userReducer: userReducer,
     inputReducer: InputReducer,
     userListReducer: userListReducer,
+    loadingReducer: loadingReducer,
 
     // add more reducers here
   },

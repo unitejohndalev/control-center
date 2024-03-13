@@ -9,10 +9,10 @@
 
 .dark {
   background-color: rgb(60, 56, 56);
- 
+  transition: 0.5s ease-in-out;
 }
 
 .light {
-  background-color: rgb(255, 250, 244);
-  
+  background-color: #fff;
+  transition: 0.5s ease-in-out;
 }

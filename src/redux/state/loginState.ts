@@ -11,22 +11,25 @@ const userInitialState: UserState = {
   ],
 };
 
-const UserSlice = createSlice({
-  name: "person",
-  initialState: userInitialState,
-  reducers: {
-    // setUserProfile: (state, action: PayloadAction<User[]>) => {
-    //   state.personValue = action.payload;
-    // },
-    getRolesSuccess: (state, action) => {
-      state.personValue = action.payload;
-   
-    },
+const UserValueSlice = createSlice({
+  name: "userValue",
+  initialState: {
+    userValue:[],
+    isLoading: false,
   },
+  reducers: {
+    getUserFetch: (state) => {
+      state.isLoading = true;
+    },
+    getUserSuccess: (state, action) => {
+      state.userValue = action.payload;
+      state.isLoading = false;
+    },
+  }
 });
 
-export const { getRolesSuccess } = UserSlice.actions
-export const userReducer = UserSlice.reducer;
+export const { getUserFetch, getUserSuccess } = UserValueSlice.actions
+export const userReducer = UserValueSlice.reducer;
 
 const inputInitialState: UserInput = {
   username: "",
