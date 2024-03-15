@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { put, takeLatest, call, takeEvery, Effect } from "redux-saga/effects";
 import {
   clearUser,

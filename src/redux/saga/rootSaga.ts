@@ -1,7 +1,7 @@
 // rootSaga.ts
 import { all } from "redux-saga/effects";
 import { userListSaga } from "./userListSaga";
-import { loginSaga } from "./loginSaga";
+// import { loginSaga } from "./loginSaga";
 import userSaga, {
   userPrincipalSaga,
   userSagaAdd,
@@ -17,7 +17,7 @@ import { sessionSaga } from "./sessionSaga";
 export default function* rootSaga() {
   yield all([
     userListSaga(),
-    loginSaga(),
+    // loginSaga(),
     userSagaFetchUserInfo(),
     userSagaFetchUserRoles(),
     userSagaAdd(),

@@ -18,9 +18,9 @@
   bottom: 0;
   left: 0;
   background-color: rgba(
+    175,
     185,
-    175,
-    175,
+    185,
     0.5
   ); /* Change the last value (0.5) to adjust opacity */
 }
@@ -29,10 +29,10 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  max-width: 400px;
+  justify-content: space-between;
+  width: 20rem;
   padding: 1.5rem 2rem;
-  height: 500px;
+  height: 25rem;
   background-color: #fff;
   border-radius: 0.5rem;
 }
@@ -40,24 +40,24 @@
 .LightFormContainer {
   display: flex;
   flex-direction: column;
-  justify-content: end;
-  max-width: 400px;
-  row-gap: 2rem;
-  padding: 0 1rem 4rem 1rem;
+  justify-content: center;
+
+  height: 80%;
+  row-gap: 1.5rem;
+  padding: 0 1rem;
 }
 
 .DarkFormContainer {
   display: flex;
   flex-direction: column;
-  justify-content: end;
-  max-width: 400px;
-  row-gap: 2rem;
-  padding: 0 1rem 4rem 1rem;
+  justify-content: center;
+  height: 80%;
+  row-gap: 1.5rem;
+  padding: 0 1rem;
 }
 
 .loginLogo {
-  height: 20vh;
-  padding: 1rem;
+  max-height: 15vh;
 }
 
 .ButtonLetter {

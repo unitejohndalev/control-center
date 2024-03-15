@@ -1,35 +1,35 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User, UserState, UserInput } from "../../types/Types";
 
-const userInitialState: UserState = {
-  personValue: [
-    {
-      id: 1,
-      username: "junite",
-      password: "tsukiden+",
-    },
-  ],
-};
+// const userInitialState: UserState = {
+//   personValue: [
+//     {
+//       id: 1,
+//       username: "junite",
+//       password: "tsukiden+",
+//     },
+//   ],
+// };
 
-const UserValueSlice = createSlice({
-  name: "userValue",
-  initialState: {
-    userValue:[],
-    isLoading: false,
-  },
-  reducers: {
-    getUserFetch: (state) => {
-      state.isLoading = true;
-    },
-    getUserSuccess: (state, action) => {
-      state.userValue = action.payload;
-      state.isLoading = false;
-    },
-  }
-});
+// const UserValueSlice = createSlice({
+//   name: "userValue",
+//   initialState: {
+//     userValue:[],
+//     isLoading: false,
+//   },
+//   reducers: {
+//     getUserFetch: (state) => {
+//       state.isLoading = true;
+//     },
+//     getUserSuccess: (state, action) => {
+//       state.userValue = action.payload;
+//       state.isLoading = false;
+//     },
+//   }
+// });
 
-export const { getUserFetch, getUserSuccess } = UserValueSlice.actions
-export const userReducer = UserValueSlice.reducer;
+// export const { getUserFetch, getUserSuccess } = UserValueSlice.actions
+// export const userReducer = UserValueSlice.reducer;
 
 const inputInitialState: UserInput = {
   username: "",

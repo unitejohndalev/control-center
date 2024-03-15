@@ -9,10 +9,13 @@ import loginLogo from "../../assets/logo (blue).png";
 import HashLoader from "react-spinners/HashLoader";
 import { motion } from "framer-motion";
 import { loginAni, staggerContainer } from "../../framer/variants";
-import { Navbar } from "../nav/Navbar";
-import { getUsersFetch } from "../../redux/state/userState";
+import { LoginNavbar } from "../nav/LoginNavbar";
 import { login } from "../../redux/saga/sessionSaga";
 import { setError, clearError } from "../../redux/state/userState";
+// import {
+//   setLoadingFalse,
+ 
+// } from "../../redux/state/loadingState";
 
 const override: CSSProperties = {
   display: "block",
@@ -21,14 +24,18 @@ const override: CSSProperties = {
 };
 const Add: React.FC = () => {
   //to dispatch functions from redux toolkit
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   //us navigation for navigating UI
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
   const [color, setColor] = useState("#2466a2");
+  const [isValid, setIsValid] = useState(true);
+  const [errorIcon, setErrorIcon] = useState<JSX.Element>();
+  const [helperText, setHelperText] = useState("");
 
+ 
   useEffect(() => {
     setLoading(loading);
     setTimeout(() => {
@@ -36,59 +43,28 @@ const Add: React.FC = () => {
     }, 2000);
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(getUsersFetch());
-  // }, [dispatch]);
+  useEffect(() => {
+    // dispatch(setLoadingFalse());
+  
+  }, [dispatch]);
 
-  // //mock data stored in user in store
-  // const existingUsers = useSelector(
-  //   (state: RootState) => state.userReducer.users
-  // );
 
-  // console.log(existingUsers);
 
-  // //empty state stored in userInput in store
-  // const userInput = useSelector((state: RootState) => state.inputReducer);
+  //empty state stored in userInput in store
+  const userInput = useSelector((state: RootState) => state.inputReducer);
 
-  // //destructure userInput
-  // const { username, password } = userInput;
+  //destructure userInput
+  const { username, password } = userInput;
 
-  // //input function, setting the state into empty string
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   dispatch(setUserField({ ...userInput, [name]: value }));
-  // };
-
-  // //submit function, comparing the value of the input to the value of the mock data
-  // //if values equal, navigate to userList UI
-  // const handleLoginSubmit = () => {
-  //   // Check if username and password are empty
-  //   if (!userInput.username.trim() || !userInput.password.trim()) {
-  //     alert("Please fill in all fields");
-  //     return;
-  //   }
-
-  //   // Check if username and password match any existing user
-  //   const user = existingUsers.find(
-  //     (user: any) => user.username === username && user.password === password
-  //   );
-  //   if (user) {
-  //     navigate("/userlist");
-  //   } else {
-  //     alert("Invalid username or password");
-  //   }
-  // };
+  //input function, setting the state into empty string
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    dispatch(setUserField({ ...userInput, [name]: value }));
+  };
 
   const themeState = useSelector(
     (state: RootState) => state.themeReducer.themeState
   );
-
-  const dispatch = useDispatch();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [isValid, setIsValid] = useState(true);
-  const [errorIcon, setErrorIcon] = useState<JSX.Element>();
-  const [helperText, setHelperText] = useState("");
 
   const errorMessage = useSelector(
     (state: RootState) => state.sessionReducer.error
@@ -102,21 +78,22 @@ const Add: React.FC = () => {
     return state.sessionReducer.user;
   });
 
+  
+
   /* THIS LINE IS USED TO FETCHED THE AUTHENTICATION STATUS */
   const isAuthenticated = useSelector((state: RootState) => {
     return state.sessionReducer.isAuthenticated;
   });
 
-  React.useEffect(() => {
-    // Remove this entire useEffect block
-  }, []);
 
+  //function for submitting form
   const handleLogin = (event: React.FormEvent) => {
     event.preventDefault();
     dispatch(login({ username, password }));
     dispatch(clearError());
   };
 
+  //handling fetch authentication
   React.useEffect(() => {
     if (errorMessage === null) {
       setErrorMessage(undefined);
@@ -129,10 +106,18 @@ const Add: React.FC = () => {
     }
   }, [errorMessage, error, username, password, dispatch]);
 
-  console.log(username, password, isAuthenticated);
+  //check if userInput work and authentication is true or false
+  // console.log(username, password, isAuthenticated);
+
+
+   const loadingStateLoad = useSelector(
+     (state: RootState) => state.loadingReducer.isLoading
+   );
+
+     console.log(loadingStateLoad);
   return (
     <>
-      {loading ? null : <Navbar />}
+      {loading ? null : <LoginNavbar />}
       <motion.div
         variants={staggerContainer}
         initial="initial"
@@ -164,7 +149,7 @@ const Add: React.FC = () => {
                 name="username"
                 autoFocus
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={handleChange}
                 error={!isValid}
                 InputProps={{
                   endAdornment: errorIcon,
@@ -177,7 +162,7 @@ const Add: React.FC = () => {
                 autoComplete="current-password"
                 name="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleChange}
                 error={!isValid}
                 InputProps={{
                   endAdornment: errorIcon,

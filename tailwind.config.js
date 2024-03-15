@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -21,9 +22,7 @@ export default {
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
     },
-    extend: {
-     
-    },
+    extend: {},
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };

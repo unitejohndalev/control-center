@@ -7,6 +7,12 @@
   padding: 0;
 }
 
+/* body {
+  background-image: url("../../control-center/src//assets//loginbg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
 .dark {
   background-color: rgb(60, 56, 56);
   transition: 0.5s ease-in-out;

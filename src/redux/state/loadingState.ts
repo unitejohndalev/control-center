@@ -1,3 +1,4 @@
+/* eslint-disable no-self-assign */
 import { createSlice } from "@reduxjs/toolkit";
 
 type loadingState = {
@@ -15,12 +16,12 @@ const loadingState = createSlice({
     // setUserProfile: (state, action: PayloadAction<User[]>) => {
     //   state.personValue = action.payload;
     // },
-    setLoadingFalse: (state) => {
-      console.log("Loading state set to false"); // Add this console log
-      state.isLoading = false;
-    },
+    // setLoadingFalse: (state) => {
+    //   console.log("Loading state set to false"); // Add this console log
+    //   state.isLoading = false;
+    // }
   },
 });
 
-export const { setLoadingFalse } = loadingState.actions;
+// export const { setLoadingFalse } = loadingState.actions;
 export const loadingReducer = loadingState.reducer;

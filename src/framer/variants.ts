@@ -8,9 +8,9 @@ export const staggerContainer = {
   },
 };
 export const loginAni = {
-  initial: { x: 300, opacity: 0 },
+  initial: { x: 350, opacity: 0 },
   animate: {
-    x: 250,
+    x: 300,
     opacity: 1,
     transition: { type: "spring", duration: 3 },
   },
