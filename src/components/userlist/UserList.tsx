@@ -63,7 +63,7 @@ const UserList: React.FC = () => {
             return (
               <tr
                 key={idx}
-                className="flex w-full border-b-[.1rem]  gap-x-5 py-1  shadow-sm font-medium text-[.9rem]">
+                className="flex w-full border-b-[.1rem]  gap-x-5 py-1  shadow-sm text-[.9rem]">
                 <td className="w-[10%] line-clamp-1 text-center">{username}</td>
                 <td className="w-[10%] line-clamp-1 text-center">{fname}</td>
                 <td className="w-[10%] line-clamp-1 text-center">{lname}</td>

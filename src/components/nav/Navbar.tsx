@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
         {showDropDown && (
           <ul
             tabIndex={0}
-            className="absolute right-0 flex flex-col justify-center w-[15rem] mt-[1rem] border-[.1rem] rounded-md shadow-sm px-2 py-2 gap-y-1">
+            className="absolute bg-white right-0 flex flex-col justify-center w-[15rem] mt-[1rem] border-[.1rem] rounded-md shadow-sm px-2 py-2 gap-y-1">
             <li className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md cursor-pointer">
               <a className="justify-between">username</a>
             </li>
