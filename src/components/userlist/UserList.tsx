@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store/store";
 import { getUserListFetch } from "../../redux/state/userListState";
+import Sidebar from "../sidebar/Sidebar";
+import { Navbar } from "../nav/Navbar";
 
 type userData = {
   id: number;
@@ -14,6 +16,7 @@ type userData = {
   position_sh_name: string;
   section_name: string;
   username: string;
+  reg_date: string;
 };
 
 const UserList: React.FC = () => {
@@ -29,68 +32,63 @@ const UserList: React.FC = () => {
 
   console.log(userList);
   return (
-    // <div>
-
-    //   {userList.map((user: userData) => (
-    //     <div key={user.id} className="">
-    //       {user.username}
-    //     </div>
-    //   ))}
-    // </div>
-    <div className="overflow-x-auto">
-      <table className="table">
-        {/* head */}
-        <thead>
-          <tr>
-            <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th>
-            <th>Fullname</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Position</th>
-            <th>Department</th>
-            <th>Status</th>
-            <th>Project</th>
-            <th></th>
+    <div className="relative flex flex-col w-full px-2 mt-2 gap-y-2">
+      <Navbar />
+      <div className="flex gap-x-2">
+        <Sidebar />
+        <table className="w-[100%] border-[.1rem] rounded-md shadow-sm bg-white  py-2 gap-x-5 flex flex-col ">
+          <tr className="flex w-full border-b-[.1rem] py-1  gap-x-5 shadow-sm font-medium text-[.9rem]">
+            <th className="w-[10%]">Username</th>
+            <th className="w-[10%]">First Name</th>
+            <th className="w-[10%]">Last Name</th>
+            <th className="w-[10%]">Position</th>
+            <th className="w-[10%]">Email</th>
+            <th className="w-[10%]">Business Unit</th>
+            <th className="w-[10%]">Department</th>
+            <th className="w-[10%]">Created</th>
+            <th className="w-[10%]">Actions</th>
           </tr>
-        </thead>
-        <tbody>
-          {/* row 1 */}
-          {userList.map((user: userData) => (
-            <tr key={user.id}>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <td>
-                <div className="flex items-center gap-3">
-                  <div className="avatar">
-                    <div className="w-12 h-12 mask mask-squircle">
-                      <img
-                        src="/tailwind-css-component-profile-2@56w.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">{`${user.fname} ${user.lname}`}</div>
-                  </div>
-                </div>
-              </td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>{user.position_sh_name}</td>
-              <td>{user.dept_name}</td>
-              <td>{user.position_sh_name}</td>
-            </tr>
-          ))}
-        </tbody>
-        {/* foot */}
-      </table>
+          {userList.map((user: userData, idx) => {
+            const {
+              username,
+              fname,
+              lname,
+              position_sh_name,
+              email,
+              dept_name,
+              section_name,
+              reg_date,
+            } = user;
+            console.log(user);
+            return (
+              <tr
+                key={idx}
+                className="flex w-full border-b-[.1rem]  gap-x-5 py-1  shadow-sm font-medium text-[.9rem]">
+                <td className="w-[10%] line-clamp-1 text-center">{username}</td>
+                <td className="w-[10%] line-clamp-1 text-center">{fname}</td>
+                <td className="w-[10%] line-clamp-1 text-center">{lname}</td>
+                <td className="w-[10%] line-clamp-1 text-center">
+                  {position_sh_name}
+                </td>
+                <td className="w-[10%] whitespace-nowrap overflow-hidden overflow-ellipsis text-center">
+                  {email}
+                </td>
+                <td className="w-[10%] line-clamp-1 text-center">
+                  {dept_name}
+                </td>
+                <td className="w-[10%] line-clamp-1 text-center">
+                  {section_name}
+                </td>
+                <td className="w-[10%] line-clamp-1 text-center">{reg_date}</td>
+                <td className="w-[10%] flex justify-between px-2">
+                  <p>delete</p>
+                  <p>edit</p>
+                </td>
+              </tr>
+            );
+          })}
+        </table>
+      </div>
     </div>
   );
 };
