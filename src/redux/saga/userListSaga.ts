@@ -7,6 +7,7 @@ import { getUserListSuccess } from "../state/userListState";
 function* fetchUserList(): any {
   try {
     const userList = yield call(() =>
+      // http://localhost:8081/user-table
       axios.get("http://localhost:8080/user/user-table").then((res) => res.data)
     );
     yield put(getUserListSuccess(userList));
