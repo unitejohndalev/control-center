@@ -72,4 +72,39 @@
   .dropdownContent {
     @apply hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem] cursor-pointer;
   }
+
+  /* !UserListTableData style */
+  .container {
+    @apply w-[98%] border-[.1rem] rounded-md shadow-sm bg-white h-[100vh]
+  }
+  .trContainer {
+    @apply flex w-full  border-b-[.1rem] py-1 gap-x-5 shadow-sm font-medium text-[.8rem] 
+  }
+  .thInputContainer {
+    @apply w-[5%] flex items-center justify-center
+  }
+  .thInput {
+    @apply h-[1rem] cursor-pointer
+  }
+  .thData {
+    @apply w-[10%] line-clamp-1
+  }
+  .trDataContainer {
+    @apply flex w-full border-b-[.1rem]  gap-x-5 py-1  shadow-sm text-[.8rem] font-medium
+  }
+  .tdContainer {
+    @apply w-[10%] line-clamp-1 text-center
+  }
+  .tdEmail {
+    @apply w-[10%] whitespace-nowrap overflow-hidden overflow-ellipsis text-center
+  }
+  .tdDeleteIconContainer {
+    @apply w-[10%] flex justify-center items-center gap-x-2
+  }
+  .lineDiv {
+    @apply h-[1rem] border-[.01rem] border-[#E5E7EB]
+  }
+  .tdIcon {
+    @apply text-[1.3rem] cursor-pointer text-[#78797c]
+  }
 }
