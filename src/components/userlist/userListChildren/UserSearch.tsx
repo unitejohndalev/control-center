@@ -10,6 +10,7 @@ import {
 //import module style css
 import UserSearchStyle from "../UserList.module.css";
 import { setDropDownFalse } from "../../../redux/state/navBarState";
+import { setShowOtherSideBarText1False, setShowOthersSideBarText2False } from "../../../redux/state/sidebarState";
 
 const UserSearch = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,8 @@ const UserSearch = () => {
     dispatch(setSearchOptions());
     dispatch(setDropDownFalse());
     dispatch(setShowMoreFalse());
+    dispatch(setShowOtherSideBarText1False());
+    dispatch(setShowOthersSideBarText2False());
   };
   return (
     <div

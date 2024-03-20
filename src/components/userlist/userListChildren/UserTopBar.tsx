@@ -19,6 +19,7 @@ import { RootState } from "../../../redux/store/store";
 //import module style css
 import UserTopBarStyle from "../UserList.module.css";
 import { setDropDownFalse } from "../../../redux/state/navBarState";
+import { setShowOtherSideBarText1False, setShowOthersSideBarText2False } from "../../../redux/state/sidebarState";
 
 const UserTopBar = () => {
   const dispatch = useDispatch();
@@ -47,6 +48,8 @@ const UserTopBar = () => {
     dispatch(setShowMore());
     dispatch(setSearchOptionsFalse());
     dispatch(setDropDownFalse());
+    dispatch(setShowOtherSideBarText1False());
+    dispatch(setShowOthersSideBarText2False());
   };
   return (
     <div className={UserTopBarStyle.userTopBarContainer}>

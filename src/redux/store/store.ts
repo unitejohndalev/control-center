@@ -14,37 +14,45 @@ import { navbarDropDownReducer, themeReducer } from "../state/navBarState";
 import { loadingReducer } from "../state/loadingState";
 import sessionReducer from "../state/sessionState";
 import { searchOptionsReducer } from "../state/userListState";
+import {
+  hoverDashBoardTextReducer,
+  hoverOthersTextReducer,
+  hoverProjectTextReducer,
+  hoverRoleTextReducer,
+  hoverUserTextReducer,
+  otherSideBarText1Reducer,
+  otherSideBartText2Reducer,
+  sideBarTextReducer,
+} from "../state/sidebarState";
 
 const saga = createSagaMiddleware();
 export const store = configureStore({
   reducer: {
     //navbar state
     themeReducer: themeReducer,
-    navbarDropDownReducer : navbarDropDownReducer,
+    navbarDropDownReducer: navbarDropDownReducer,
+    topBarReducer: topBarReducer,
 
     //user data for log in
     userReducer: userReducer,
-
-    //user authentication
     sessionReducer: sessionReducer,
-
-    //user input state
     inputReducer: InputReducer,
 
-    //userList state
+    //userList states
     userListReducer: userListReducer,
-
-    //showTopBar state
-    topBarReducer: topBarReducer,
-
-    //searchOption state
     searchOptionsReducer: searchOptionsReducer,
-
-    //addUserHover state
     addUserHoverReducer: addUserHoverReducer,
-
-    //showMore state
     showMoreReducer: showMoreReducer,
+
+    //sidebar state
+    sideBarTextReducer: sideBarTextReducer,
+    otherSideBarText1Reducer: otherSideBarText1Reducer,
+    otherSideBartText2Reducer: otherSideBartText2Reducer,
+    hoverDashBoardTextReducer: hoverDashBoardTextReducer,
+    hoverUserTextReducer: hoverUserTextReducer,
+    hoverProjectTextReducer: hoverProjectTextReducer,
+    hoverRoleTextReducer: hoverRoleTextReducer,
+    hoverOthersTextReducer: hoverOthersTextReducer,
 
     //loading state
     loadingReducer: loadingReducer,

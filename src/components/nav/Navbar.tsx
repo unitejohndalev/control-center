@@ -13,6 +13,7 @@ import {
 } from "../../redux/state/userListState";
 
 import NavBarStyle from "./navbar.module.css";
+import { setShowOtherSideBarText1False, setShowOthersSideBarText2False } from "../../redux/state/sidebarState";
 
 export const Navbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,8 @@ export const Navbar: React.FC = () => {
     dispatch(setDropDown());
     dispatch(setShowMoreFalse());
     dispatch(setSearchOptionsFalse());
+    dispatch(setShowOtherSideBarText1False());
+    dispatch(setShowOthersSideBarText2False());
   };
   return (
     <nav className={NavBarStyle.navBarContainer}>
