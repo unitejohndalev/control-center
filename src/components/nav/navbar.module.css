@@ -1,0 +1,60 @@
+@tailwind base;
+
+.NavbarContainer {
+  padding: 1rem 2rem;
+  position: fixed;
+  right: 0;
+  z-index: 100;
+  transition: 0.5s ease-in-out;
+}
+
+.iconContainer {
+  cursor: pointer;
+}
+
+.lightIcon {
+  font-size: 1.5rem;
+  transition: 0.5s ease-in-out;
+}
+
+.darkIcon {
+  font-size: 1.5rem;
+  color: #fff;
+  transition: 0.5s ease-in-out;
+}
+
+@layer base {
+  /* ! Nav style */
+  .navBarContainer {
+    @apply  border-[.1rem] w-full px-4  flex drop-shadow-lg py-2  shadow-sm rounded-md justify-between
+  }
+  .navBarLogo {
+    @apply rounded-lg cursor-pointer w-[12rem]
+  }
+
+  .navBarUserContainer { 
+    @apply flex items-center px-4 rounded-md dropdown dropdown-end gap-x-2  border-[.01rem] border-[#C9E7F9] cursor-pointer
+  }
+  .navBarUserNoti {
+    @apply relative p-1 btn btn-ghost btn-circle avatar hover:bg-transparent
+  }
+  .navBarUserNotiCircle {
+   @apply w-[.4rem] h-[.4rem] rounded-full bg-red-500 absolute top-[.15rem] left-[2.4rem]
+  }
+  .navBarDropDownContainer {
+    @apply absolute bg-white  right-0 flex flex-col justify-center items-center w-[15rem]
+             mt-[1rem] border-[.1rem] rounded-md shadow-sm px-2 py-4 
+  }
+  .navBarUserFullName {
+    @apply flex flex-col items-center justify-center leading-[1.1rem]
+  }
+  .navBarUserManageAccContainer {
+    @apply flex flex-col items-center justify-center w-full mt-5 gap-y-2
+  }
+  .navBarUserManageTextContainer {
+    @apply hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md cursor-pointer w-[80%] flex items-center justify-center border-[.01rem] border-[#C9E7F9]
+  }
+  .navBarUserLogoutContainer {
+    @apply "hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md cursor-pointer flex items-center justify-center w-[80%]  bg-slate-200 gap-x-[.1rem]"
+  }
+}

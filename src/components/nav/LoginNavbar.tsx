@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import NavbarStyle from "./LoginNavbar.module.css";
+import NavbarStyle from "./navbar.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme } from "../../redux/state/loginNavState";
+import { toggleTheme } from "../../redux/state/navBarState";
 import { RootState } from "../../redux/store/store";
 import { Expand } from "@theme-toggles/react";
 import "@theme-toggles/react/css/Expand.css";

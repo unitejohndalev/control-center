@@ -3,11 +3,14 @@ import Sidebar from "../sidebar/Sidebar";
 import { Navbar } from "../nav/Navbar";
 import UserTable from "./UserTable";
 
+//import module style css
+import UserListStyle from "./UserList.module.css";
+
 const UserList: React.FC = () => {
   return (
-    <div className="relative flex flex-col w-full px-2 py-2 gap-y-2">
+    <div className={UserListStyle.userListContainer}>
       <Navbar />
-      <div className="flex gap-x-2 h-[84vh]">
+      <div className={UserListStyle.userListChildContainer}>
         <Sidebar />
         <UserTable />
       </div>

@@ -14,7 +14,7 @@ import { login } from "../../redux/saga/sessionSaga";
 import { setError, clearError } from "../../redux/state/userState";
 // import {
 //   setLoadingFalse,
- 
+
 // } from "../../redux/state/loadingState";
 
 const override: CSSProperties = {
@@ -35,7 +35,6 @@ const Add: React.FC = () => {
   const [errorIcon, setErrorIcon] = useState<JSX.Element>();
   const [helperText, setHelperText] = useState("");
 
- 
   useEffect(() => {
     setLoading(loading);
     setTimeout(() => {
@@ -45,10 +44,7 @@ const Add: React.FC = () => {
 
   useEffect(() => {
     // dispatch(setLoadingFalse());
-  
   }, [dispatch]);
-
-
 
   //empty state stored in userInput in store
   const userInput = useSelector((state: RootState) => state.inputReducer);
@@ -78,13 +74,10 @@ const Add: React.FC = () => {
     return state.sessionReducer.user;
   });
 
-  
-
   /* THIS LINE IS USED TO FETCHED THE AUTHENTICATION STATUS */
   const isAuthenticated = useSelector((state: RootState) => {
     return state.sessionReducer.isAuthenticated;
   });
-
 
   //function for submitting form
   const handleLogin = (event: React.FormEvent) => {
@@ -109,12 +102,11 @@ const Add: React.FC = () => {
   //check if userInput work and authentication is true or false
   // console.log(username, password, isAuthenticated);
 
+  const loadingStateLoad = useSelector(
+    (state: RootState) => state.loadingReducer.isLoading
+  );
 
-   const loadingStateLoad = useSelector(
-     (state: RootState) => state.loadingReducer.isLoading
-   );
-
-     console.log(loadingStateLoad);
+  console.log(loadingStateLoad);
   return (
     <>
       {loading ? null : <LoginNavbar />}

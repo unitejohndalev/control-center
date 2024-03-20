@@ -13,6 +13,7 @@ const themeInitialState: ThemeState = {
   themeState: initialThemeState,
 };
 
+//login navigation state
 const themeSlice = createSlice({
   name: "theme",
   initialState: themeInitialState,
@@ -28,3 +29,23 @@ const themeSlice = createSlice({
 
 export const { toggleTheme } = themeSlice.actions;
 export const themeReducer = themeSlice.reducer;
+
+
+//dashboard navbar state
+const navDropDownSlice = createSlice({
+  name: "navbarDropDown",
+  initialState: {
+    navbarDropDownValue:false
+  },
+  reducers: {
+    setDropDown: (state) => {
+      state.navbarDropDownValue =!state.navbarDropDownValue;
+    },
+    setDropDownFalse: (state) => {
+      state.navbarDropDownValue = false;
+    }
+  },
+})
+
+export const { setDropDown, setDropDownFalse } = navDropDownSlice.actions;
+export const navbarDropDownReducer = navDropDownSlice.reducer
