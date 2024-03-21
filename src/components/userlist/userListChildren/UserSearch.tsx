@@ -6,13 +6,26 @@ import {
   setSearchOptions,
   setSearchOptionsFalse,
 } from "../../../redux/state/userListState";
+import { IoIosAdd, IoIosRemove } from "react-icons/io";
 
 //import module style css
 import UserSearchStyle from "../UserList.module.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const UserSearch = () => {
   const dispatch = useDispatch();
+
+  //NameIcon state
+  const [nameIcon, setNameIcon] = useState(false);
+
+  //positionIcon state
+  const [positionIcon, setPositionIcon] = useState(false);
+
+  //businessIcon state
+  const [businessIcon, setBusinessIcon] = useState(false);
+
+  //departmentIcon state
+  const [departmentIcon, setDepartmentIcon] = useState(false);
 
   //topBar value
   const showTopBarHandler = useSelector(
@@ -55,7 +68,6 @@ const UserSearch = () => {
       }>
       {showTopBarHandler && (
         <div className={UserSearchStyle.userSearchContainer}>
-          <div className="w-[5%]"></div>
           <div className={UserSearchStyle.formContainer}>
             <form
               className={UserSearchStyle.formStyle}
@@ -70,6 +82,34 @@ const UserSearch = () => {
                   placeholder="Search User"
                 />
               </div>
+              {positionIcon && (
+                <div className={UserSearchStyle.searchInputContainer}>
+                  <input
+                    type="text"
+                    className={UserSearchStyle.searchInput}
+                    placeholder="Position"
+                  />
+                </div>
+              )}
+              {businessIcon && (
+                <div className={UserSearchStyle.searchInputContainer}>
+                  <input
+                    type="text"
+                    className={UserSearchStyle.searchInput}
+                    placeholder="Business Unit"
+                  />
+                </div>
+              )}
+              {departmentIcon && (
+                <div className={UserSearchStyle.searchInputContainer}>
+                  <input
+                    type="text"
+                    className={UserSearchStyle.searchInput}
+                    placeholder="Department"
+                  />
+                </div>
+              )}
+
               <div className={UserSearchStyle.searchDropdownIcon}>
                 {searchOptionHandler ? (
                   <MdArrowDropUp onClick={searchOptionHandlerToggle} />
@@ -80,20 +120,57 @@ const UserSearch = () => {
               {searchOptionHandler && (
                 <div className={UserSearchStyle.searchDropdownContentContainer}>
                   <div className={UserSearchStyle.dropdownContentContainer}>
-                    <p className={UserSearchStyle.dropdownContent}>Name</p>
-                    <p className={UserSearchStyle.dropdownContent}>Position</p>
-                    <p className={UserSearchStyle.dropdownContent}>
-                      Business Unit
-                    </p>
-                    <p className={UserSearchStyle.dropdownContent}>
-                      Department
-                    </p>
+                    <div className="flex items-center justify-between">
+                      <p className={UserSearchStyle.dropdownContent}>Name</p>
+                      <span
+                        className="cursor-pointer"
+                        onClick={() => {
+                          setNameIcon((prev) => !prev);
+                        }}>
+                        {nameIcon ? <IoIosRemove /> : <IoIosAdd />}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <p className={UserSearchStyle.dropdownContent}>
+                        Position
+                      </p>
+                      <span
+                        className="cursor-pointer"
+                        onClick={() => {
+                          setPositionIcon((prev) => !prev);
+                        }}>
+                        {positionIcon ? <IoIosRemove /> : <IoIosAdd />}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <p className={UserSearchStyle.dropdownContent}>
+                        Business Unit
+                      </p>
+                      <span
+                        className="cursor-pointer"
+                        onClick={() => {
+                          setBusinessIcon((prev) => !prev);
+                        }}>
+                        {businessIcon ? <IoIosRemove /> : <IoIosAdd />}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <p className={UserSearchStyle.dropdownContent}>
+                        Department
+                      </p>
+                      <span
+                        className="cursor-pointer"
+                        onClick={() => {
+                          setDepartmentIcon((prev) => !prev);
+                        }}>
+                        {departmentIcon ? <IoIosRemove /> : <IoIosAdd />}
+                      </span>
+                    </div>
                   </div>
                 </div>
               )}
             </form>
           </div>
-          <div className="w-[5%]"></div>
         </div>
       )}
     </div>

@@ -42,13 +42,13 @@
     @apply h-[0rem] transition-all ease-linear duration-100;
   }
   .userSearchContainer {
-    @apply flex items-end justify-between h-[2.5rem];
+    @apply flex items-end justify-end h-[2.5rem];
   }
   .formContainer {
     @apply flex items-center justify-center h-full;
   }
   .formStyle {
-    @apply flex w-[18rem] justify-evenly gap-x-2 h-full 
+    @apply flex w-full justify-evenly gap-x-2 h-full 
     items-center relative border-[.1rem] rounded-md shadow-sm px-2;
   }
   .searchIcon {
@@ -70,7 +70,7 @@
     @apply w-full px-2 py-1;
   }
   .dropdownContent {
-    @apply hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem] cursor-pointer;
+    @apply hover:bg-[#C9E7F9] w-[80%] py-[.1rem] px-[.15rem] rounded-md text-[.8rem] cursor-pointer;
   }
 
   /* !UserListTableData style */
