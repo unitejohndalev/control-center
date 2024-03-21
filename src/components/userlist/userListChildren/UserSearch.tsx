@@ -4,13 +4,12 @@ import { MdSearch } from "react-icons/md";
 import { MdArrowDropUp, MdArrowDropDown } from "react-icons/md";
 import {
   setSearchOptions,
-  setShowMoreFalse,
+  setSearchOptionsFalse,
 } from "../../../redux/state/userListState";
 
 //import module style css
 import UserSearchStyle from "../UserList.module.css";
-import { setDropDownFalse } from "../../../redux/state/navBarState";
-import { setShowOtherSideBarText1False, setShowOthersSideBarText2False } from "../../../redux/state/sidebarState";
+import { useEffect, useRef } from "react";
 
 const UserSearch = () => {
   const dispatch = useDispatch();
@@ -27,11 +26,26 @@ const UserSearch = () => {
 
   const searchOptionHandlerToggle = () => {
     dispatch(setSearchOptions());
-    dispatch(setDropDownFalse());
-    dispatch(setShowMoreFalse());
-    dispatch(setShowOtherSideBarText1False());
-    dispatch(setShowOthersSideBarText2False());
   };
+
+  const searchDropDownContainerRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (
+        searchDropDownContainerRef.current &&
+        !searchDropDownContainerRef.current.contains(event.target)
+      ) {
+        dispatch(setSearchOptionsFalse());
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [searchDropDownContainerRef, dispatch]);
+
   return (
     <div
       className={
@@ -43,7 +57,9 @@ const UserSearch = () => {
         <div className={UserSearchStyle.userSearchContainer}>
           <div className="w-[5%]"></div>
           <div className={UserSearchStyle.formContainer}>
-            <form className={UserSearchStyle.formStyle}>
+            <form
+              className={UserSearchStyle.formStyle}
+              ref={searchDropDownContainerRef}>
               <button className={UserSearchStyle.searchIcon}>
                 <MdSearch />
               </button>

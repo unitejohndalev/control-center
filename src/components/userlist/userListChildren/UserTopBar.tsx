@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   setAddUserHover,
-  setSearchOptionsFalse,
   setShowMore,
   setShowMoreFalse,
   setShowTopBar,
@@ -18,8 +17,7 @@ import { RootState } from "../../../redux/store/store";
 
 //import module style css
 import UserTopBarStyle from "../UserList.module.css";
-import { setDropDownFalse } from "../../../redux/state/navBarState";
-import { setShowOtherSideBarText1False, setShowOthersSideBarText2False } from "../../../redux/state/sidebarState";
+import { useEffect, useRef } from "react";
 
 const UserTopBar = () => {
   const dispatch = useDispatch();
@@ -46,13 +44,31 @@ const UserTopBar = () => {
 
   const dropDownHandlerToggle = () => {
     dispatch(setShowMore());
-    dispatch(setSearchOptionsFalse());
-    dispatch(setDropDownFalse());
-    dispatch(setShowOtherSideBarText1False());
-    dispatch(setShowOthersSideBarText2False());
+   
   };
+
+
+  const moreDropDownContainerRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (
+        moreDropDownContainerRef.current &&
+        !moreDropDownContainerRef.current.contains(event.target)
+      ) {
+        dispatch(setShowMoreFalse());
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [moreDropDownContainerRef, dispatch]);
   return (
-    <div className={UserTopBarStyle.userTopBarContainer}>
+    <div
+      ref={moreDropDownContainerRef}
+      className={UserTopBarStyle.userTopBarContainer}>
       <button
         className={UserTopBarStyle.addUserButton}
         onMouseEnter={() => {

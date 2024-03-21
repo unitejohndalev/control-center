@@ -8,5 +8,20 @@ export type userData = {
   section_name: string;
   username: string;
   reg_date: string;
+  emp_id: number;
+
+
 };
 
+  //raw data for table head
+  export const thData = [
+    "Username",
+    "First Name",
+    "Last Name",
+    "Position",
+    "Email",
+    "Business Unit",
+    "Department",
+    "Created",
+    "Actions",
+  ];

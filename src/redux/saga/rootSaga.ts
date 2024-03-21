@@ -7,12 +7,13 @@ import userSaga, {
   userSagaAdd,
   userSagaDelete,
   userSagaDeleteBatch,
-  userSagaFetchUserInfo,
   userSagaFetchUserRoles,
   userSagaPass,
   userSagaUpdate,
+  userSagaFetchUserInfo,
 } from "./userSaga";
 import { sessionSaga } from "./sessionSaga";
+import { userInfoSaga } from "./userInfoSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -28,5 +29,8 @@ export default function* rootSaga() {
     userPrincipalSaga(),
 
     sessionSaga(),
+
+    userInfoSaga(),
+    // userSagaFetchUserInfo()
   ]);
 }

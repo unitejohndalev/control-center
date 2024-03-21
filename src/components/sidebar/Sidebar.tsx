@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaUsersCog, FaProjectDiagram } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
 import { LiaUserCogSolid } from "react-icons/lia";
@@ -24,12 +24,11 @@ import {
   setShowOthersSideBarText2False,
   setShowSideBarText,
 } from "../../redux/state/sidebarState";
-import {
-  setSearchOptions,
-  setSearchOptionsFalse,
-  setShowMoreFalse,
-} from "../../redux/state/userListState";
-import { setDropDownFalse } from "../../redux/state/navBarState";
+
+import SideBarStyle from "./sideBar.module.css";
+
+//import raw data for sidebar
+import { SideBarMoreSectionData } from "./sideBarTypes";
 
 const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
@@ -79,18 +78,12 @@ const Sidebar: React.FC = () => {
   const otherSidebarTrueTextHandler = () => {
     dispatch(setShowOtherSideBarText1());
     dispatch(setShowOthersSideBarText2False());
-    dispatch(setSearchOptionsFalse());
-    dispatch(setDropDownFalse());
-    dispatch(setShowMoreFalse());
   };
 
   //show other side bar when showSidebarText is false
   const otherSideBarFalseTextHandler = () => {
     dispatch(setShowOthersSideBarText2());
     dispatch(setShowOtherSideBarText1False());
-    dispatch(setSearchOptionsFalse());
-    dispatch(setShowMoreFalse());
-    dispatch(setDropDownFalse());
   };
 
   //a function to handle when to open other side bar 1 or other side bar 2
@@ -100,36 +93,51 @@ const Sidebar: React.FC = () => {
       : otherSideBarFalseTextHandler();
   };
 
+  const moreContainerRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (
+        moreContainerRef.current &&
+        !moreContainerRef.current.contains(event.target)
+      ) {
+        dispatch(setShowOtherSideBarText1False());
+        dispatch(setShowOthersSideBarText2False());
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [moreContainerRef, dispatch]);
+
   return (
     <div
       className={
         sideBarText
-          ? "h-full border-[.1rem] w-[13rem] px-5  flex flex-col gap-y-5 drop-shadow-lg shadow-sm rounded-md transition-all ease-linear "
-          : "h-full border-[.1rem] w-[5.2rem] px-5  flex flex-col gap-y-5 drop-shadow-lg  shadow-sm rounded-md transition-all ease-linear "
+          ? SideBarStyle.sideBarWidthMax
+          : SideBarStyle.sideBarWidthMin
       }>
-      <div className="flex justify-end w-full text-[#24288A] text-[1.5rem] mt-2 cursor-pointer py-1 px-2 rounded-md transition-all ease-linear">
+      <div className={SideBarStyle.sideBarIconOpenClose}>
         {sideBarText ? (
           <BsArrowBarLeft
             onClick={() => {
               dispatch(setShowSideBarText());
-
-              dispatch(setShowOtherSideBarText1False());
             }}
           />
         ) : (
           <BsArrowBarRight
             onClick={() => {
               dispatch(setShowSideBarText());
-
-              dispatch(setShowOthersSideBarText2False());
             }}
           />
         )}
       </div>
-      <div className="flex flex-col items-center w-full cursor-pointer gap-y-6">
+      <div className={SideBarStyle.sideBarContentContainer}>
         {/* DASHBOARD */}
         <div
-          className="flex items-center w-full gap-x-2 focus:bg-black"
+          className={SideBarStyle.contentContainer}
           onMouseEnter={() => {
             dispatch(setShowHoverDashBoardTextTrue());
           }}
@@ -139,8 +147,8 @@ const Sidebar: React.FC = () => {
           <div
             className={
               sideBarText
-                ? "text-[#24288A] text-[1.5rem] py-1 px-2"
-                : "hover:bg-[#C9E7F9] text-[#24288A]  text-[1.5rem] py-1 px-2 rounded-md transition-all ease-linear"
+                ? SideBarStyle.contentIconDefault
+                : SideBarStyle.contentIconHover
             }>
             <RxDashboard />
           </div>
@@ -148,8 +156,8 @@ const Sidebar: React.FC = () => {
             <p
               className={
                 hoverDashBoardText
-                  ? "bg-[#C9E7F9] py-1 px-2 rounded-md transition-all ease-linear"
-                  : "bg-transparent py-1 px-2 rounded-md transition-all ease-linear"
+                  ? SideBarStyle.contentTextTrue
+                  : SideBarStyle.contentTextFalse
               }>
               Dashboard
             </p>
@@ -157,7 +165,7 @@ const Sidebar: React.FC = () => {
         </div>
         {/* USER */}
         <div
-          className="flex items-center w-full gap-x-2"
+          className={SideBarStyle.contentContainer}
           onMouseEnter={() => {
             dispatch(setShowHoverUserTextTrue());
           }}
@@ -167,8 +175,8 @@ const Sidebar: React.FC = () => {
           <div
             className={
               sideBarText
-                ? "text-[#24288A] text-[1.5rem] py-1 px-2"
-                : "hover:bg-[#C9E7F9] text-[#24288A]  text-[1.5rem] py-1 px-2 rounded-md transition-all ease-linear"
+                ? SideBarStyle.contentIconDefault
+                : SideBarStyle.contentIconHover
             }>
             <FaUsersCog />
           </div>
@@ -177,8 +185,8 @@ const Sidebar: React.FC = () => {
             <p
               className={
                 hoverUserText
-                  ? "bg-[#C9E7F9] py-1 px-2 rounded-md transition-all ease-linear"
-                  : "bg-transparent py-1 px-2 rounded-md transition-all ease-linear"
+                  ? SideBarStyle.contentTextTrue
+                  : SideBarStyle.contentTextFalse
               }>
               User
             </p>
@@ -186,7 +194,7 @@ const Sidebar: React.FC = () => {
         </div>
         {/* PROJECT */}
         <div
-          className="flex items-center w-full gap-x-2"
+          className={SideBarStyle.contentContainer}
           onMouseEnter={() => {
             dispatch(setShowHoverProjectTextTrue());
           }}
@@ -196,8 +204,8 @@ const Sidebar: React.FC = () => {
           <div
             className={
               sideBarText
-                ? "text-[#24288A] text-[1.5rem] py-1 px-2"
-                : "hover:bg-[#C9E7F9] text-[#24288A]  text-[1.5rem] py-1 px-2 rounded-md transition-all ease-linear"
+                ? SideBarStyle.contentIconDefault
+                : SideBarStyle.contentIconHover
             }>
             <FaProjectDiagram />
           </div>
@@ -205,8 +213,8 @@ const Sidebar: React.FC = () => {
             <p
               className={
                 hoverProjectText
-                  ? "bg-[#C9E7F9] py-1 px-2 rounded-md transition-all ease-linear"
-                  : "bg-transparent py-1 px-2 rounded-md transition-all ease-linear"
+                  ? SideBarStyle.contentTextTrue
+                  : SideBarStyle.contentTextFalse
               }>
               Project
             </p>
@@ -214,7 +222,7 @@ const Sidebar: React.FC = () => {
         </div>
         {/* ROLE */}
         <div
-          className="flex items-center w-full gap-x-2"
+          className={SideBarStyle.contentContainer}
           onMouseEnter={() => {
             dispatch(setShowHoverRoleTextTrue());
           }}
@@ -224,8 +232,8 @@ const Sidebar: React.FC = () => {
           <div
             className={
               sideBarText
-                ? "text-[#24288A] text-[1.5rem] py-1 px-2"
-                : "hover:bg-[#C9E7F9] text-[#24288A]  text-[1.5rem] py-1 px-2 rounded-md transition-all ease-linear"
+                ? SideBarStyle.contentIconDefault
+                : SideBarStyle.contentIconHover
             }>
             <LiaUserCogSolid />
           </div>
@@ -233,17 +241,19 @@ const Sidebar: React.FC = () => {
             <p
               className={
                 hoverRoleText
-                  ? "bg-[#C9E7F9] py-1 px-2 rounded-md transition-all ease-linear"
-                  : "bg-transparent py-1 px-2 rounded-md transition-all ease-linear"
+                  ? SideBarStyle.contentTextTrue
+                  : SideBarStyle.contentTextFalse
               }>
               Role
             </p>
           )}
         </div>
         {/* OTHERS */}
-        <div className="relative flex flex-col w-full gap-x-2">
+        <div
+          ref={moreContainerRef}
+          className="relative flex flex-col w-full gap-x-2">
           <div
-            className="flex items-center gap-x-2"
+            className={SideBarStyle.contentContainer}
             onClick={otherSideBarHandler}
             onMouseEnter={() => {
               dispatch(setShowHoverOthersTextTrue());
@@ -253,9 +263,11 @@ const Sidebar: React.FC = () => {
             }}>
             <div
               className={
-                sideBarText
-                  ? "text-[#24288A] text-[1.5rem] py-1 px-2"
-                  : "hover:bg-[#C9E7F9] text-[#24288A]  text-[1.5rem] py-1 px-2 rounded-md transition-all ease-linear"
+                otherSidebarText2
+                  ? SideBarStyle.contentIconTrue
+                  : sideBarText
+                  ? SideBarStyle.contentIconDefault
+                  : SideBarStyle.contentIconHover
               }>
               <SlOptions />
             </div>
@@ -264,10 +276,10 @@ const Sidebar: React.FC = () => {
                 <p
                   className={
                     otherSidebarText1
-                      ? "bg-[#C9E7F9] py-1 px-2 rounded-md transition-all ease-linear"
+                      ? SideBarStyle.contentTextTrue
                       : hoverOthersText
-                      ? "bg-[#C9E7F9] py-1 px-2 rounded-md transition-all ease-linear"
-                      : "bg-transparent py-1 px-2 rounded-md transition-all ease-linear"
+                      ? SideBarStyle.contentTextTrue
+                      : SideBarStyle.contentTextFalse
                   }>
                   Others
                 </p>
@@ -279,62 +291,28 @@ const Sidebar: React.FC = () => {
             )}
           </div>
           {otherSidebarText1 && (
-            <div className="flex justify-center border-[.1rem] rounded-md shadow-sm  py-2 mt-[1rem] ">
-              <div className="h-[140px] overflow-y-auto custom-scrollbar flex flex-col gap-y-1 pr-1 py-2 ">
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Development Phase
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Project Status
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Employee Status
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Employee Position
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Business Unit
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Department
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Technologies
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Clients
-                </p>
+            <div className={SideBarStyle.text1Container}>
+              <div className={SideBarStyle.text1InnerContainer}>
+                {SideBarMoreSectionData.map((data, idx) => {
+                  return (
+                    <div key={idx} className={SideBarStyle.contentText}>
+                      {data}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
           {otherSidebarText2 && (
-            <div className="absolute left-[4rem] bg-white flex  justify-center  border-[.1rem] rounded-md shadow-sm px-2 py-2 ">
-              <div className="w-[10rem] h-[160px] overflow-y-auto custom-scrollbar pr-1 py-2 flex flex-col gap-y-1">
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Development Phase
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Project Status
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Employee Status
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Employee Position
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Business Unit
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Department
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Technologies
-                </p>
-                <p className="hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem]">
-                  Clients
-                </p>
+            <div className={SideBarStyle.text2Container}>
+              <div className={SideBarStyle.text2InnerContainer}>
+                {SideBarMoreSectionData.map((data, idx) => {
+                  return (
+                    <div key={idx} className={SideBarStyle.contentText}>
+                      {data}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}

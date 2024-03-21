@@ -7,11 +7,11 @@ import UserTableStyle from "./UserList.module.css";
 
 const UserTable = () => {
   return (
-    <table className={UserTableStyle.userTableContainer}>
+    <div className={UserTableStyle.userTableContainer}>
       <UserTopBar />
       <UserSearch />
       <UserListTableData />
-    </table>
+    </div>
   );
 };
 

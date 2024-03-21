@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/saga/sessionSaga";
 import navLogo from "../../assets/logo (blue).png";
@@ -7,13 +7,9 @@ import { FaRegBell } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
 import { RootState } from "../../redux/store/store";
 import { setDropDown, setDropDownFalse } from "../../redux/state/navBarState";
-import {
-  setSearchOptionsFalse,
-  setShowMoreFalse,
-} from "../../redux/state/userListState";
 
+//import navBar style
 import NavBarStyle from "./navbar.module.css";
-import { setShowOtherSideBarText1False, setShowOthersSideBarText2False } from "../../redux/state/sidebarState";
 
 export const Navbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -30,11 +26,26 @@ export const Navbar: React.FC = () => {
 
   const dropDownHandlerToggle = () => {
     dispatch(setDropDown());
-    dispatch(setShowMoreFalse());
-    dispatch(setSearchOptionsFalse());
-    dispatch(setShowOtherSideBarText1False());
-    dispatch(setShowOthersSideBarText2False());
   };
+
+  const profileDropDownContainerRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (
+        profileDropDownContainerRef.current &&
+        !profileDropDownContainerRef.current.contains(event.target)
+      ) {
+        dispatch(setDropDownFalse());
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [profileDropDownContainerRef, dispatch]);
+
   return (
     <nav className={NavBarStyle.navBarContainer}>
       <div>
@@ -44,14 +55,11 @@ export const Navbar: React.FC = () => {
           className={NavBarStyle.navBarLogo}
         />
       </div>
-      <div className="flex-none gap-2 ">
+      <div className="flex-none gap-2 " ref={profileDropDownContainerRef}>
         <div
           className={NavBarStyle.navBarUserContainer}
           onClick={dropDownHandlerToggle}>
-          <div
-            tabIndex={0}
-            role="button"
-            className={NavBarStyle.navBarUserNoti}>
+          <div role="button" className={NavBarStyle.navBarUserNoti}>
             <div className="w-10 rounded-full">
               <img alt="Tailwind CSS Navbar component" src={imgProfile} />
             </div>

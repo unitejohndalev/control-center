@@ -1,14 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store/store";
 import { getUserListFetch } from "../../../redux/state/userListState";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { IoKey } from "react-icons/io5";
 import { userData } from "../userListTypes";
 
 //import module style css
 import UserListTableDataStyle from "../UserList.module.css";
+
+//import raw data for table head
+import { thData } from "../userListTypes";
+import UserView from "../../userView/UserView";
+
 const UserListTableData = () => {
   const dispatch = useDispatch();
 
@@ -21,38 +25,30 @@ const UserListTableData = () => {
   const userList = useSelector(
     (state: RootState) => state.userListReducer.userList
   );
-  //raw data for table head
-  const thData = [
-    "Username",
-    "First Name",
-    "Last Name",
-    "Position",
-    "Email",
-    "Business Unit",
-    "Department",
-    "Created",
-    "Actions",
-  ];
+
+  //show userview modal
+  const [userViewModal, setUserViewModal] = useState(false);
+  const [userViewModalId, setUserViewModalId] = useState<number>();
 
   return (
     <div className={UserListTableDataStyle.container}>
-      <tr className={UserListTableDataStyle.trContainer}>
-        <th className={UserListTableDataStyle.thInputContainer}>
+      <div className={UserListTableDataStyle.trContainer}>
+        <div className={UserListTableDataStyle.thInputContainer}>
           <input
             type="checkbox"
             name=""
             id=""
             className={UserListTableDataStyle.thInput}
           />
-        </th>
+        </div>
         {thData.map((thD, idx) => {
           return (
-            <th key={idx} className={UserListTableDataStyle.thData}>
+            <div key={idx} className={UserListTableDataStyle.thData}>
               {thD}
-            </th>
+            </div>
           );
         })}
-      </tr>
+      </div>
       {userList.map((user: userData, idx) => {
         const {
           username,
@@ -63,21 +59,28 @@ const UserListTableData = () => {
           dept_name,
           section_name,
           reg_date,
+          emp_id,
         } = user;
+
         return (
-          <tr key={idx} className={UserListTableDataStyle.trDataContainer}>
-            <td className={UserListTableDataStyle.thInputContainer}>
+          <div key={idx} className={UserListTableDataStyle.trDataContainer}>
+            <div className={UserListTableDataStyle.thInputContainer}>
               <input
                 type="checkbox"
                 name=""
                 id=""
                 className={UserListTableDataStyle.thInput}
               />
-            </td>
+            </div>
             <td className={UserListTableDataStyle.tdContainer}>
-              <Link to="" className="text-blue-700 underline">
+              <span
+                onClick={() => {
+                  setUserViewModal(true);
+                  setUserViewModalId(emp_id);
+                }}
+                className="text-blue-700 underline">
                 {username}
-              </Link>
+              </span>
             </td>
             <td className={UserListTableDataStyle.tdContainer}>{fname}</td>
             <td className={UserListTableDataStyle.tdContainer}>{lname}</td>
@@ -99,9 +102,21 @@ const UserListTableData = () => {
                 <IoKey />
               </span>
             </td>
-          </tr>
+          </div>
         );
       })}
+      <div className="">
+        {userList.map((user: userData, idx) => {
+          const { emp_id } = user;
+          return (
+            <div key={idx}>
+              {userViewModal && userViewModalId === emp_id && (
+                <UserView empId={emp_id} />
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

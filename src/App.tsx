@@ -8,6 +8,7 @@ import Cookies from "universal-cookie";
 import { apiLogin } from "./redux/saga/sessionSaga";
 import { setAuthenticationStatus, setUser } from "./redux/state/sessionState";
 import UserPage from "./components/userPage/UserPage";
+import UserView from "./components/userView/UserView";
 
 const App: React.FC = () => {
   const themeState = useSelector(
@@ -48,6 +49,7 @@ const App: React.FC = () => {
           <>
             <Route path="/" element={<Navigate to="/userpage" />} />
             <Route path="/userpage/*" element={<UserPage />} />
+            <Route path="/userview/:id/*" element={<UserView />} />
           </>
         ) : (
           <>

@@ -1,6 +1,6 @@
-/* eslint-disable no-undef */
-/** @type {import('tailwindcss').Config} */
-export default {
+// tailwind.config.js
+
+module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
@@ -24,5 +24,21 @@ export default {
     },
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".custom-scrollbar::-webkit-scrollbar": {
+          backgroundColor: "transparent",
+          width: "0.4rem",
+        },
+        ".custom-scrollbar::-webkit-scrollbar-thumb": {
+          background: "#24288a",
+          borderRadius: "10px",
+          cursor: "pointer",
+        },
+      };
+      addUtilities(newUtilities, ["responsive", "hover"]);
+    },
+    require("daisyui"),
+  ],
 };

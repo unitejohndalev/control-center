@@ -28,7 +28,7 @@
     @apply absolute w-[10rem]  flex flex-col top-[1.9rem] px-2 py-1 right-[.5rem] text-[1rem] border-[.1rem] rounded-md shadow-sm bg-white;
   }
   .moreIcon {
-   @apply items-end py-1 cursor-pointer 
+    @apply items-end py-1 cursor-pointer;
   }
   .moreCategory {
     @apply hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem] cursor-pointer flex items-center justify-between;
@@ -75,36 +75,36 @@
 
   /* !UserListTableData style */
   .container {
-    @apply w-[98%] border-[.1rem] rounded-md shadow-sm bg-white h-[100vh]
+    @apply w-[98%] border-[.1rem] rounded-md shadow-sm bg-white h-[100vh];
   }
   .trContainer {
-    @apply flex w-full  border-b-[.1rem] py-1 gap-x-5 shadow-sm font-medium text-[.8rem] 
+    @apply flex w-full  border-b-[.1rem] py-1 gap-x-5 shadow-sm font-medium text-[.8rem];
   }
   .thInputContainer {
-    @apply w-[5%] flex items-center justify-center
+    @apply w-[5%] flex items-center justify-center;
   }
   .thInput {
-    @apply h-[1rem] cursor-pointer
+    @apply h-[1rem] cursor-pointer;
   }
   .thData {
-    @apply w-[10%] line-clamp-1
+    @apply w-[10%] line-clamp-1 text-center;
   }
   .trDataContainer {
-    @apply flex w-full border-b-[.1rem]  gap-x-5 py-1  shadow-sm text-[.8rem] font-medium
+    @apply flex w-full border-b-[.1rem]  gap-x-5 py-1  shadow-sm text-[.8rem] font-medium;
   }
   .tdContainer {
-    @apply w-[10%] line-clamp-1 text-center
+    @apply w-[10%] line-clamp-1 text-center;
   }
   .tdEmail {
-    @apply w-[10%] whitespace-nowrap overflow-hidden overflow-ellipsis text-center
+    @apply w-[10%] whitespace-nowrap overflow-hidden overflow-ellipsis text-center;
   }
   .tdDeleteIconContainer {
-    @apply w-[10%] flex justify-center items-center gap-x-2
+    @apply w-[10%] flex justify-center items-center gap-x-2;
   }
   .lineDiv {
-    @apply h-[1rem] border-[.01rem] border-[#E5E7EB]
+    @apply h-[1rem] border-[.01rem] border-[#E5E7EB];
   }
   .tdIcon {
-    @apply text-[1.3rem] cursor-pointer text-[#78797c]
+    @apply text-[1.3rem] cursor-pointer text-[#78797c];
   }
 }

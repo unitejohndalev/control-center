@@ -24,6 +24,7 @@ import {
   otherSideBartText2Reducer,
   sideBarTextReducer,
 } from "../state/sidebarState";
+import { userInfoReducer } from "../state/userInfoState";
 
 const saga = createSagaMiddleware();
 export const store = configureStore({
@@ -56,6 +57,8 @@ export const store = configureStore({
 
     //loading state
     loadingReducer: loadingReducer,
+
+    userInfoReducer: userInfoReducer,
 
     // add more reducers here
   },
