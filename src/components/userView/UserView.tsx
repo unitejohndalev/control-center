@@ -12,19 +12,17 @@ type UserListType = {
 };
 
 const UserView: React.FC<UserListType> = ({ empId }) => {
-
   const dispatch = useDispatch();
- 
 
   useEffect(() => {
     dispatch(getUserInfoFetch(empId)); // Dispatch action with empId
   }, [dispatch, empId]);
   const userInfoData: any = useSelector<RootState, typeof userInfoData>(
     (state) => state.userInfoReducer.userView
-    );
-    console.log(userInfoData);
+  );
+  console.log(userInfoData);
 
-  userInfoData
+  userInfoData;
   const {
     username,
     fname,
@@ -48,7 +46,7 @@ const UserView: React.FC<UserListType> = ({ empId }) => {
       <p>{dept_name}</p>
       <p>{section_name}</p>
       <p>{reg_date}</p>
-      {/* <p>{userInfoData.fname}</p> */}
+      {/* <p>{userInfoData}</p> */}
     </div>
   );
 };

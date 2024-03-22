@@ -57,7 +57,7 @@
     @apply flex items-center justify-center;
   }
   .searchInput {
-    @apply outline-none placeholder:pl-2;
+    @apply outline-none placeholder:pl-2 border-b-[.1rem] rounded-md shadow-sm;
   }
   .searchDropdownIcon {
     @apply text-[1.5rem] cursor-pointer flex items-center justify-center;

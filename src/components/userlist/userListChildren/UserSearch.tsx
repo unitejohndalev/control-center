@@ -72,14 +72,11 @@ const UserSearch = () => {
             <form
               className={UserSearchStyle.formStyle}
               ref={searchDropDownContainerRef}>
-              <button className={UserSearchStyle.searchIcon}>
-                <MdSearch />
-              </button>
               <div className={UserSearchStyle.searchInputContainer}>
                 <input
                   type="text"
                   className={UserSearchStyle.searchInput}
-                  placeholder="Search User"
+                  placeholder={nameIcon ? "Name" : "Search User"}
                 />
               </div>
               {positionIcon && (
@@ -117,6 +114,9 @@ const UserSearch = () => {
                   <MdArrowDropDown onClick={searchOptionHandlerToggle} />
                 )}
               </div>
+              <button className={UserSearchStyle.searchIcon}>
+                <MdSearch />
+              </button>
               <div className={UserSearchStyle.searchDropdownContentContainer}>
                 {searchOptionHandler && (
                   <div className={UserSearchStyle.dropdownContentContainer}>
