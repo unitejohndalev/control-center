@@ -1,0 +1,45 @@
+@tailwind base;
+
+@layer base {
+
+  /*! UserSearch style  */
+  .showTopHandlerTrue {
+    @apply h-[5rem] w-[98%] bg-white py-2 transition-all ease-linear duration-100;
+  }
+  .showTopHandlerFalse {
+    @apply h-[0rem] transition-all ease-linear duration-100;
+  }
+  .userSearchContainer {
+    @apply flex items-end justify-end h-[2.5rem];
+  }
+  .formContainer {
+    @apply flex items-center justify-center h-full;
+  }
+  .formStyle {
+    @apply flex w-full justify-evenly gap-x-2 h-full relative
+    items-center  border-[.1rem] rounded-md shadow-sm px-2;
+  }
+  .searchIcon {
+    @apply items-center justify-center font-medium text-[1.5rem];
+  }
+  .searchInputContainer {
+    @apply flex items-center justify-center;
+  }
+  .searchInput {
+    @apply outline-none placeholder:pl-2;
+  }
+  .searchDropdownIcon {
+    @apply text-[1.5rem] cursor-pointer flex items-center justify-center;
+  }
+  .searchDropdownContentContainer {
+    @apply absolute w-[10rem] top-[2.7rem] right-0 text-[1rem] border-[.1rem] rounded-md shadow-sm bg-white;
+  }
+  .dropdownContentContainer {
+    @apply w-full px-2 py-1;
+  }
+  .dropdownContent {
+    @apply hover:bg-[#C9E7F9] w-[80%] py-[.1rem] px-[.15rem] rounded-md text-[.8rem] cursor-pointer;
+  }
+
+
+}

@@ -117,8 +117,8 @@ const UserSearch = () => {
                   <MdArrowDropDown onClick={searchOptionHandlerToggle} />
                 )}
               </div>
-              {searchOptionHandler && (
-                <div className={UserSearchStyle.searchDropdownContentContainer}>
+              <div className={UserSearchStyle.searchDropdownContentContainer}>
+                {searchOptionHandler && (
                   <div className={UserSearchStyle.dropdownContentContainer}>
                     <div className="flex items-center justify-between">
                       <p className={UserSearchStyle.dropdownContent}>Name</p>
@@ -167,8 +167,8 @@ const UserSearch = () => {
                       </span>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </form>
           </div>
         </div>

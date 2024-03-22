@@ -7,33 +7,24 @@ import { userData } from "../userlist/userListTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfoFetch } from "../../redux/state/userInfoState";
 import { RootState } from "../../redux/store/store";
-// import { RootState } from "../../redux/store/store";
-// import { getUserInfoFetch } from "../../redux/state/userInfoState";
 type UserListType = {
   empId: number;
 };
 
 const UserView: React.FC<UserListType> = ({ empId }) => {
-//   const { id } = useParams();
+
   const dispatch = useDispatch();
-    // const [userInfo, setUserInfo] = useState<userData>([]);
-    // useEffect(() => {
-    //   const res = async () => {
-    //     const data = await axios.get(`http://localhost:8080/user/info/${empId}`);
-    //     setUserInfo(data.data);
-    //   };
-    //   res();
-    // }, [setUserInfo]);
-    // console.log(userInfo);
+ 
 
   useEffect(() => {
     dispatch(getUserInfoFetch(empId)); // Dispatch action with empId
   }, [dispatch, empId]);
-
   const userInfoData: any = useSelector<RootState, typeof userInfoData>(
     (state) => state.userInfoReducer.userView
-  );
+    );
+    console.log(userInfoData);
 
+  userInfoData
   const {
     username,
     fname,
