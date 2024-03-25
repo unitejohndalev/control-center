@@ -66,10 +66,13 @@
     @apply relative text-[1rem];
   }
   .dropdownContentContainer {
-    @apply px-2 py-1 absolute  w-[12rem] border-[.1rem] top-[1.7rem] right-0 bg-white rounded-md shadow-sm;
+    @apply px-2 py-1 flex flex-col gap-y-1  absolute  w-[12rem] border-[.1rem] top-[1.7rem] right-0 bg-white rounded-md shadow-sm;
   }
   .dropdownContent {
     @apply hover:bg-[#C9E7F9] w-[80%] py-[.1rem] px-[.15rem] rounded-md text-[.8rem] cursor-pointer;
+  }
+  .dropdownContentTrue {
+    @apply bg-[#80C6F1] w-[80%] text-white py-[.1rem] px-[.15rem] rounded-md text-[.8rem] cursor-pointer;
   }
 
   /* !UserListTableData style */

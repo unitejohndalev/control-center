@@ -6,7 +6,16 @@ import { configureStore } from "@reduxjs/toolkit";
 import rootSaga from "../saga/rootSaga";
 import {
   addUserHoverReducer,
+  businessIconReducer,
+  departmentIconReducer,
+  nameIconReducer,
+  positionIconReducer,
+  showBusinessInputReducer,
+  showDepartmentInputReducer,
   showMoreReducer,
+  showNameInputReducer,
+  showPositionInputReducer,
+  showSearchUserInputReducer,
   topBarReducer,
   userListReducer,
 } from "../state/userListState";
@@ -44,6 +53,17 @@ export const store = configureStore({
     searchOptionsReducer: searchOptionsReducer,
     addUserHoverReducer: addUserHoverReducer,
     showMoreReducer: showMoreReducer,
+
+    //userList SearchBar states
+    showSearchUserInputReducer: showSearchUserInputReducer,
+    nameIconReducer: nameIconReducer,
+    showNameInputReducer: showNameInputReducer,
+    positionIconReducer: positionIconReducer,
+    showPositionInputReducer: showPositionInputReducer,
+    businessIconReducer: businessIconReducer,
+    showBusinessInputReducer:showBusinessInputReducer,
+    departmentIconReducer: departmentIconReducer,
+    showDepartmentInputReducer:showDepartmentInputReducer,
 
     //sidebar state
     sideBarTextReducer: sideBarTextReducer,

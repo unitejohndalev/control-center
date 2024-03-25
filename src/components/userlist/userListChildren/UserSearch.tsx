@@ -5,6 +5,9 @@ import { MdArrowDropUp, MdArrowDropDown } from "react-icons/md";
 import {
   setSearchOptions,
   setSearchOptionsFalse,
+  setShowSearchUserInputFalse,
+  setShowSearchUserInputToggle,
+  setShowSearchUserInputTrue,
 } from "../../../redux/state/userListState";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 
@@ -17,16 +20,51 @@ const UserSearch = () => {
 
   //showSearchUserInput state
   const [showSearchUserInput, setShowSearchUserInput] = useState(true);
+  // const showSearchUserInput = useSelector(
+  //   (state: RootState) =>
+  //     state.showSearchUserInputReducer.showSearchUserInputValue
+  // );
 
+  //store all dispatch in a variable to avoid repetitive calls of dispatch
+  const toggleUserInput = () => dispatch(setShowSearchUserInputToggle());
+  const falseUserInput = () => dispatch(setShowSearchUserInputFalse());
+  const trueUserInput = () => dispatch(setShowSearchUserInputTrue());
+  
+  useEffect(() => {
+    toggleUserInput();
+    falseUserInput();
+    trueUserInput();
+  }, []);
   //NameIcon state
   const [nameIcon, setNameIcon] = useState(false);
   //showNameInput state
   const [showNameInput, setShowNameInput] = useState(false);
-  //nameFunctionToggle state
-  const [nameFunctionToggle, setNameFunctionToggle] = useState(true);
 
+  //toggleName function
+  const toggleName = () => {
+    setShowNameInput((prev) => !prev);
+    setShowSearchUserInput((prev) => !prev);
+
+    setNameIcon((prev) => !prev);
+    if (
+      showPositionInput ||
+      showBusinessInput ||
+      showDepartmentInput === true
+    ) {
+      setShowSearchUserInput(false);
+
+      setShowBusinessInput(false);
+      setShowPositionInput(false);
+      setShowDepartmentInput(false);
+      setShowNameInput(true);
+      setNameIcon(true);
+      setPositionIcon(false);
+      setBusinessIcon(false);
+      setDepartmentIcon(false);
+    }
+  };
   //nameIconToggle function
-  let toggleIconName = () => {
+  const toggleIconName = () => {
     setNameIcon((prev) => !prev);
     if (
       showPositionInput ||
@@ -36,26 +74,44 @@ const UserSearch = () => {
       setShowSearchUserInput(false);
     }
   };
-  const toggleIconNameFalse = () => {
-    console.log("no function");
-  };
+
   //nameIconToggleRemove function
   const nameIconToggleRemove = () => {
     setShowSearchUserInput(true);
+
     setShowNameInput(false);
   };
   //nameIconToggleAdd function
   const nameIconToggleAdd = () => {
     setShowSearchUserInput(false);
+
     setShowNameInput(true);
   };
-  const originalToggleIconName = toggleIconName;
-  toggleIconName = toggleIconNameFalse;
 
   //positionIcon state
   const [positionIcon, setPositionIcon] = useState(false);
   //showPositionInput state
   const [showPositionInput, setShowPositionInput] = useState(false);
+  //togglePosition function
+  const togglePosition = () => {
+    setShowPositionInput((prev) => !prev);
+    setShowSearchUserInput((prev) => !prev);
+
+    setPositionIcon((prev) => !prev);
+
+    if (showNameInput || showBusinessInput || showDepartmentInput === true) {
+      setShowSearchUserInput(false);
+      setShowBusinessInput(false);
+      setShowDepartmentInput(false);
+      setShowNameInput(false);
+      setShowPositionInput(true);
+
+      setNameIcon(false);
+      setPositionIcon(true);
+      setBusinessIcon(false);
+      setDepartmentIcon(false);
+    }
+  };
   //togglePositionInput function
   const togglePositionInput = () => {
     setPositionIcon((prev) => !prev);
@@ -78,6 +134,23 @@ const UserSearch = () => {
   const [businessIcon, setBusinessIcon] = useState(false);
   //showBusinessInput state
   const [showBusinessInput, setShowBusinessInput] = useState(false);
+  //togglePosition function
+  const toggleBusiness = () => {
+    setShowSearchUserInput((prev) => !prev);
+    setBusinessIcon((prev) => !prev);
+
+    if (showNameInput || showPositionInput || showDepartmentInput === true) {
+      setShowSearchUserInput(false);
+      setShowDepartmentInput(false);
+      setShowPositionInput(false);
+      setShowNameInput(false);
+      setShowBusinessInput(true);
+      setNameIcon(false);
+      setPositionIcon(false);
+      setBusinessIcon(true);
+      setDepartmentIcon(false);
+    }
+  };
   //toggleBusinessInput function
   const toggleBusinessInput = () => {
     setBusinessIcon((prev) => !prev);
@@ -100,6 +173,24 @@ const UserSearch = () => {
   const [departmentIcon, setDepartmentIcon] = useState(false);
   //showDepartmentInput state
   const [showDepartmentInput, setShowDepartmentInput] = useState(false);
+  //toggleDepartment function
+  const toggleDepartment = () => {
+    setShowDepartmentInput((prev) => !prev);
+    setShowSearchUserInput((prev) => !prev);
+    setDepartmentIcon((prev) => !prev);
+
+    if (showNameInput || showBusinessInput || showPositionInput === true) {
+      setShowSearchUserInput(false);
+      setShowBusinessInput(false);
+      setShowPositionInput(false);
+      setShowNameInput(false);
+      setShowDepartmentInput(true);
+      setNameIcon(false);
+      setPositionIcon(false);
+      setBusinessIcon(false);
+      setDepartmentIcon(true);
+    }
+  };
   //toggleDepartmentInput function
   const toggleDepartmentInput = () => {
     setDepartmentIcon((prev) => !prev);
@@ -225,17 +316,15 @@ const UserSearch = () => {
                   <div className={UserSearchStyle.dropdownContentContainer}>
                     <div className="flex items-center justify-between ">
                       <p
-                        className={UserSearchStyle.dropdownContent}
-                        onClick={() => {
-                          setShowNameInput(prev => !prev);
-                          setShowSearchUserInput(false);
-                          // toggleIconName();
-                        }}>
+                        className={
+                          showNameInput
+                            ? UserSearchStyle.dropdownContentTrue
+                            : UserSearchStyle.dropdownContent
+                        }
+                        onClick={toggleName}>
                         Name
                       </p>
-                      <span
-                        className="cursor-pointer"
-                        onClick={originalToggleIconName}>
+                      <span className="cursor-pointer" onClick={toggleIconName}>
                         {nameIcon ? (
                           <IoIosRemove onClick={nameIconToggleRemove} />
                         ) : (
@@ -245,12 +334,12 @@ const UserSearch = () => {
                     </div>
                     <div className="flex items-center justify-between">
                       <p
-                        className={UserSearchStyle.dropdownContent}
-                        // onClick={() => {
-                        //   setShowPositionInput((prev) => !prev);
-                        //   setShowSearchUserInput((prev) => !prev);
-                        // }}
-                      >
+                        className={
+                          showPositionInput
+                            ? UserSearchStyle.dropdownContentTrue
+                            : UserSearchStyle.dropdownContent
+                        }
+                        onClick={togglePosition}>
                         Position
                       </p>
                       <span
@@ -265,12 +354,12 @@ const UserSearch = () => {
                     </div>
                     <div className="flex items-center justify-between">
                       <p
-                        className={UserSearchStyle.dropdownContent}
-                        // onClick={() => {
-                        //   setShowBusinessInput((prev) => !prev);
-                        //   setShowSearchUserInput((prev) => !prev);
-                        // }}
-                      >
+                        className={
+                          showBusinessInput
+                            ? UserSearchStyle.dropdownContentTrue
+                            : UserSearchStyle.dropdownContent
+                        }
+                        onClick={toggleBusiness}>
                         Business Unit
                       </p>
                       <span
@@ -285,12 +374,12 @@ const UserSearch = () => {
                     </div>
                     <div className="flex items-center justify-between">
                       <p
-                        className={UserSearchStyle.dropdownContent}
-                        // onClick={() => {
-                        //   setShowDepartmentInput((prev) => !prev);
-                        //   setShowSearchUserInput((prev) => !prev);
-                        // }}
-                      >
+                        className={
+                          showDepartmentInput
+                            ? UserSearchStyle.dropdownContentTrue
+                            : UserSearchStyle.dropdownContent
+                        }
+                        onClick={toggleDepartment}>
                         Department
                       </p>
                       <span

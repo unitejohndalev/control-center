@@ -57,7 +57,6 @@ export const { setSearchOptions, setSearchOptionsFalse } = searchOptionsSlice.ac
 export const searchOptionsReducer = searchOptionsSlice.reducer;
 
 //addUserHover Slice
-
 const addUserHoverSlice = createSlice({
   name: "addUserHover",
   initialState: {
@@ -74,7 +73,6 @@ export const { setAddUserHover } = addUserHoverSlice.actions;
 export const addUserHoverReducer = addUserHoverSlice.reducer;
 
 //showMore Slice
-
 const showMoreSlice = createSlice({
   name: "showMore",
   initialState: {
@@ -92,3 +90,226 @@ const showMoreSlice = createSlice({
 
 export const { setShowMore, setShowMoreFalse } = showMoreSlice.actions;
 export const showMoreReducer = showMoreSlice.reducer;
+
+//showSearchUserInput Slice
+const showSearchUserInputSlice = createSlice({
+name: "showSearchUserInput",
+initialState: {
+  showSearchUserInputValue:true,
+},
+reducers: {
+  setShowSearchUserInputToggle: (state) => {
+    state.showSearchUserInputValue =!state.showSearchUserInputValue;
+  },
+  setShowSearchUserInputFalse: (state) => {
+    state.showSearchUserInputValue = false;
+  },
+  setShowSearchUserInputTrue: (state) => { 
+    state.showSearchUserInputValue = true
+  }
+}
+})
+
+export const {
+  setShowSearchUserInputToggle,
+  setShowSearchUserInputFalse,
+  setShowSearchUserInputTrue,
+} = showSearchUserInputSlice.actions;
+export const showSearchUserInputReducer = showSearchUserInputSlice.reducer
+
+//nameIcon Slice
+const nameIconSlice = createSlice({
+  name: "nameIcon",
+  initialState: {
+    nameIconValue: false,
+  },
+  reducers: {
+    setNameIconToggle: (state) => {
+      state.nameIconValue = !state.nameIconValue;
+    },
+    setNameIconFalse: (state) => {
+      state.nameIconValue = false;
+    },
+    setNameIconTrue: (state) => {
+      state.nameIconValue = true;
+    },
+  },
+});
+
+export const { setNameIconToggle, setNameIconFalse, setNameIconTrue } =
+  nameIconSlice.actions;
+export const nameIconReducer = nameIconSlice.reducer;
+
+//showNameInput Slice
+const showNameInputSlice = createSlice({
+  name: "showNameInput",
+  initialState: {
+    showNameInputValue: false,
+  },
+  reducers: {
+    setShowNameInputToggle: (state) => {
+      state.showNameInputValue =!state.showNameInputValue;
+    },
+    setShowNameInputFalse: (state) => {
+      state.showNameInputValue = false;
+    },
+    setShowNameInputTrue: (state) => {
+      state.showNameInputValue = true;
+    },
+  },
+});
+
+export const { setShowNameInputToggle, setShowNameInputFalse, setShowNameInputTrue } =
+  showNameInputSlice.actions;
+export const showNameInputReducer = showNameInputSlice.reducer
+
+//positionIcon Slice
+const positionIconSlice = createSlice({
+  name: "positionIcon",
+  initialState: {
+    positionIconValue: false,
+  },
+  reducers: {
+    setPositionIconToggle: (state) => {
+      state.positionIconValue = !state.positionIconValue;
+    },
+    setPositionIconFalse: (state) => {
+      state.positionIconValue = false;
+    },
+    setPositionIconTrue: (state) => {
+      state.positionIconValue = true;
+    },
+  },
+});
+
+export const { setPositionIconToggle, setPositionIconFalse, setPositionIconTrue } =
+  positionIconSlice.actions;
+export const positionIconReducer = positionIconSlice.reducer;
+
+//showPositionInput Slice
+
+const showPositionInputSlice = createSlice({
+  name: "showPositionInput",
+  initialState: {
+    showPositionInputValue: false,
+  },
+  reducers: {
+    setShowPositionInputToggle: (state) => {
+      state.showPositionInputValue =!state.showPositionInputValue;
+    },
+    setShowPositionInputFalse: (state) => {
+      state.showPositionInputValue = false;
+    },
+    setShowPositionInputTrue: (state) => {
+      state.showPositionInputValue = true;
+    },
+  },
+});
+
+export const {
+  setShowPositionInputToggle,
+  setShowPositionInputFalse,
+  setShowPositionInputTrue,
+} = showPositionInputSlice.actions;
+export const showPositionInputReducer = showPositionInputSlice.reducer
+
+//businessIcon Slice
+const businessIconSlice = createSlice({
+  name: "businessIcon",
+  initialState: {
+    businessIconValue: false,
+  },
+  reducers: {
+    setBusinessIconToggle: (state) => {
+      state.businessIconValue = !state.businessIconValue;
+    },
+    setBusinessIconFalse: (state) => {
+      state.businessIconValue = false;
+    },
+    setBusinessIconTrue: (state) => {
+      state.businessIconValue = true;
+    },
+  },
+});
+
+export const { setBusinessIconToggle, setBusinessIconFalse, setBusinessIconTrue } =
+  businessIconSlice.actions;
+export const businessIconReducer = businessIconSlice.reducer;
+
+//showBusinessInput Slice
+const showBusinessInputSlice = createSlice({
+  name: "showBusinessInput",
+  initialState: {
+    showBusinessInputValue: false,
+  },
+  reducers: {
+    setShowBusinessInputToggle: (state) => {
+      state.showBusinessInputValue =!state.showBusinessInputValue;
+    },
+    setShowBusinessInputFalse: (state) => {
+      state.showBusinessInputValue = false;
+    },
+    setShowBusinessInputTrue: (state) => {
+      state.showBusinessInputValue = true;
+    },
+  },
+});
+
+export const {
+  setShowBusinessInputToggle,
+  setShowBusinessInputFalse,
+  setShowBusinessInputTrue,
+} = showBusinessInputSlice.actions;
+export const showBusinessInputReducer = showBusinessInputSlice.reducer;
+
+//departmentIcon Slice
+const departmentIconSlice = createSlice({
+  name: "departmentIcon",
+  initialState: {
+    departmentIconValue: false,
+  },
+  reducers: {
+    setDepartmentIconToggle: (state) => {
+      state.departmentIconValue = !state.departmentIconValue;
+    },
+    setDepartmentIconFalse: (state) => {
+      state.departmentIconValue = false;
+    },
+    setDepartmentIconTrue: (state) => {
+      state.departmentIconValue = true;
+    },
+  },
+});
+
+export const {
+  setDepartmentIconToggle,
+  setDepartmentIconFalse,
+  setDepartmentIconTrue,
+} = departmentIconSlice.actions;
+export const departmentIconReducer = departmentIconSlice.reducer;
+
+//showDepartmentInput Slice
+const showDepartmentInputSlice = createSlice({
+  name: "showDepartmentInput",
+  initialState: {
+    showDepartmentInputValue: false,
+  },
+  reducers: {
+    setShowDepartmentInputToggle: (state) => {
+      state.showDepartmentInputValue =!state.showDepartmentInputValue;
+    },
+    setShowDepartmentInputFalse: (state) => {
+      state.showDepartmentInputValue = false;
+    },
+    setShowDepartmentInputTrue: (state) => {
+      state.showDepartmentInputValue = true;
+    },
+  },
+});
+
+export const {
+  setShowDepartmentInputToggle,
+  setShowDepartmentInputFalse,
+  setShowDepartmentInputTrue,
+} = showDepartmentInputSlice.actions;
+export const showDepartmentInputReducer = showDepartmentInputSlice.reducer;
