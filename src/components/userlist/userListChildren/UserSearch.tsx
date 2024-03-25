@@ -15,17 +15,108 @@ import { useEffect, useRef, useState } from "react";
 const UserSearch = () => {
   const dispatch = useDispatch();
 
+  //showSearchUserInput state
+  const [showSearchUserInput, setShowSearchUserInput] = useState(true);
+
   //NameIcon state
   const [nameIcon, setNameIcon] = useState(false);
+  //showNameInput state
+  const [showNameInput, setShowNameInput] = useState(false);
+  //nameFunctionToggle state
+  const [nameFunctionToggle, setNameFunctionToggle] = useState(true);
+
+  //nameIconToggle function
+  let toggleIconName = () => {
+    setNameIcon((prev) => !prev);
+    if (
+      showPositionInput ||
+      showBusinessInput ||
+      showDepartmentInput === true
+    ) {
+      setShowSearchUserInput(false);
+    }
+  };
+  const toggleIconNameFalse = () => {
+    console.log("no function");
+  };
+  //nameIconToggleRemove function
+  const nameIconToggleRemove = () => {
+    setShowSearchUserInput(true);
+    setShowNameInput(false);
+  };
+  //nameIconToggleAdd function
+  const nameIconToggleAdd = () => {
+    setShowSearchUserInput(false);
+    setShowNameInput(true);
+  };
+  const originalToggleIconName = toggleIconName;
+  toggleIconName = toggleIconNameFalse;
 
   //positionIcon state
   const [positionIcon, setPositionIcon] = useState(false);
+  //showPositionInput state
+  const [showPositionInput, setShowPositionInput] = useState(false);
+  //togglePositionInput function
+  const togglePositionInput = () => {
+    setPositionIcon((prev) => !prev);
+    if (showNameInput || showBusinessInput || showDepartmentInput === true) {
+      setShowSearchUserInput(false);
+    }
+  };
+  //positionIconToggleRemove function
+  const positionIconToggleRemove = () => {
+    setShowSearchUserInput(true);
+    setShowPositionInput(false);
+  };
+  //positionIconToggleAdd function
+  const positionIconToggleAdd = () => {
+    setShowSearchUserInput(false);
+    setShowPositionInput(true);
+  };
 
   //businessIcon state
   const [businessIcon, setBusinessIcon] = useState(false);
+  //showBusinessInput state
+  const [showBusinessInput, setShowBusinessInput] = useState(false);
+  //toggleBusinessInput function
+  const toggleBusinessInput = () => {
+    setBusinessIcon((prev) => !prev);
+    if (showNameInput || showPositionInput || showDepartmentInput === true) {
+      setShowSearchUserInput(false);
+    }
+  };
+  //businessIconToggleRemove function
+  const businessIconToggleRemove = () => {
+    setShowSearchUserInput(true);
+    setShowBusinessInput(false);
+  };
+  //businessIconToggleAdd function
+  const businessIconToggleAdd = () => {
+    setShowSearchUserInput(false);
+    setShowBusinessInput(true);
+  };
 
   //departmentIcon state
   const [departmentIcon, setDepartmentIcon] = useState(false);
+  //showDepartmentInput state
+  const [showDepartmentInput, setShowDepartmentInput] = useState(false);
+  //toggleDepartmentInput function
+  const toggleDepartmentInput = () => {
+    setDepartmentIcon((prev) => !prev);
+    if (showNameInput || showBusinessInput || showPositionInput === true) {
+      setShowSearchUserInput(false);
+    }
+  };
+  //departmentIconToggleRemove function
+  const departmentIconToggleRemove = () => {
+    setShowSearchUserInput(true);
+    setShowDepartmentInput(false);
+  };
+  //departmentIconToggleAdd function
+  const departmentIconToggleAdd = () => {
+    setShowSearchUserInput(false);
+    setShowDepartmentInput(true);
+  };
 
   //topBar value
   const showTopBarHandler = useSelector(
@@ -72,14 +163,26 @@ const UserSearch = () => {
             <form
               className={UserSearchStyle.formStyle}
               ref={searchDropDownContainerRef}>
-              <div className={UserSearchStyle.searchInputContainer}>
-                <input
-                  type="text"
-                  className={UserSearchStyle.searchInput}
-                  placeholder={nameIcon ? "Name" : "Search User"}
-                />
-              </div>
-              {positionIcon && (
+              {showSearchUserInput && (
+                <div className={UserSearchStyle.searchInputContainer}>
+                  <input
+                    type="text"
+                    className={UserSearchStyle.searchInput}
+                    placeholder="Search User"
+                  />
+                </div>
+              )}
+              {showNameInput && (
+                <div className={UserSearchStyle.searchInputContainer}>
+                  <input
+                    type="text"
+                    className={UserSearchStyle.searchInput}
+                    placeholder="Name"
+                  />
+                </div>
+              )}
+
+              {showPositionInput && (
                 <div className={UserSearchStyle.searchInputContainer}>
                   <input
                     type="text"
@@ -88,7 +191,7 @@ const UserSearch = () => {
                   />
                 </div>
               )}
-              {businessIcon && (
+              {showBusinessInput && (
                 <div className={UserSearchStyle.searchInputContainer}>
                   <input
                     type="text"
@@ -97,7 +200,7 @@ const UserSearch = () => {
                   />
                 </div>
               )}
-              {departmentIcon && (
+              {showDepartmentInput && (
                 <div className={UserSearchStyle.searchInputContainer}>
                   <input
                     type="text"
@@ -120,50 +223,84 @@ const UserSearch = () => {
               <div className={UserSearchStyle.searchDropdownContentContainer}>
                 {searchOptionHandler && (
                   <div className={UserSearchStyle.dropdownContentContainer}>
-                    <div className="flex items-center justify-between">
-                      <p className={UserSearchStyle.dropdownContent}>Name</p>
+                    <div className="flex items-center justify-between ">
+                      <p
+                        className={UserSearchStyle.dropdownContent}
+                        onClick={() => {
+                          setShowNameInput(prev => !prev);
+                          setShowSearchUserInput(false);
+                          // toggleIconName();
+                        }}>
+                        Name
+                      </p>
                       <span
                         className="cursor-pointer"
-                        onClick={() => {
-                          setNameIcon((prev) => !prev);
-                        }}>
-                        {nameIcon ? <IoIosRemove /> : <IoIosAdd />}
+                        onClick={originalToggleIconName}>
+                        {nameIcon ? (
+                          <IoIosRemove onClick={nameIconToggleRemove} />
+                        ) : (
+                          <IoIosAdd onClick={nameIconToggleAdd} />
+                        )}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <p className={UserSearchStyle.dropdownContent}>
+                      <p
+                        className={UserSearchStyle.dropdownContent}
+                        // onClick={() => {
+                        //   setShowPositionInput((prev) => !prev);
+                        //   setShowSearchUserInput((prev) => !prev);
+                        // }}
+                      >
                         Position
                       </p>
                       <span
                         className="cursor-pointer"
-                        onClick={() => {
-                          setPositionIcon((prev) => !prev);
-                        }}>
-                        {positionIcon ? <IoIosRemove /> : <IoIosAdd />}
+                        onClick={togglePositionInput}>
+                        {positionIcon ? (
+                          <IoIosRemove onClick={positionIconToggleRemove} />
+                        ) : (
+                          <IoIosAdd onClick={positionIconToggleAdd} />
+                        )}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <p className={UserSearchStyle.dropdownContent}>
+                      <p
+                        className={UserSearchStyle.dropdownContent}
+                        // onClick={() => {
+                        //   setShowBusinessInput((prev) => !prev);
+                        //   setShowSearchUserInput((prev) => !prev);
+                        // }}
+                      >
                         Business Unit
                       </p>
                       <span
                         className="cursor-pointer"
-                        onClick={() => {
-                          setBusinessIcon((prev) => !prev);
-                        }}>
-                        {businessIcon ? <IoIosRemove /> : <IoIosAdd />}
+                        onClick={toggleBusinessInput}>
+                        {businessIcon ? (
+                          <IoIosRemove onClick={businessIconToggleRemove} />
+                        ) : (
+                          <IoIosAdd onClick={businessIconToggleAdd} />
+                        )}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <p className={UserSearchStyle.dropdownContent}>
+                      <p
+                        className={UserSearchStyle.dropdownContent}
+                        // onClick={() => {
+                        //   setShowDepartmentInput((prev) => !prev);
+                        //   setShowSearchUserInput((prev) => !prev);
+                        // }}
+                      >
                         Department
                       </p>
                       <span
                         className="cursor-pointer"
-                        onClick={() => {
-                          setDepartmentIcon((prev) => !prev);
-                        }}>
-                        {departmentIcon ? <IoIosRemove /> : <IoIosAdd />}
+                        onClick={toggleDepartmentInput}>
+                        {departmentIcon ? (
+                          <IoIosRemove onClick={departmentIconToggleRemove} />
+                        ) : (
+                          <IoIosAdd onClick={departmentIconToggleAdd} />
+                        )}
                       </span>
                     </div>
                   </div>
