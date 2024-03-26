@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store/store";
-import { getUserListFetch } from "../../../redux/state/userListState";
+import {
+  getUserListFetch,
+  setUserField,
+} from "../../../redux/state/userListState";
 import { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { IoKey } from "react-icons/io5";
@@ -30,6 +33,29 @@ const UserListTableData = () => {
   const [userViewModal, setUserViewModal] = useState(false);
   const [userViewModalId, setUserViewModalId] = useState<number>();
 
+  //get all empty string for user input
+  const userInputById = useSelector(
+    (state: RootState) => state.userListReducer.userInfo
+  );
+  //input function, setting the state into empty string
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    dispatch(setUserField({ ...userInputById, [name]: value }));
+  };
+  console.log(userInputById);
+  console.log(userList);
+
+  // const {
+  //   username,
+  //   fname,
+  //   lname,
+  //   position_sh_name,
+  //   email,
+  //   dept_name,
+  //   section_name,
+  //   reg_date,
+  //   emp_id,
+  // } = userData;
   return (
     <div className={UserListTableDataStyle.container}>
       <div className={UserListTableDataStyle.trContainer}>
@@ -72,28 +98,58 @@ const UserListTableData = () => {
                 className={UserListTableDataStyle.thInput}
               />
             </div>
-            <td className={UserListTableDataStyle.tdContainer}>
-              <span
-                onClick={() => {
-                  setUserViewModal(true);
-                  setUserViewModalId(emp_id);
-                }}
-                className="text-blue-700 underline">
-                {username}
-              </span>
-            </td>
-            <td className={UserListTableDataStyle.tdContainer}>{fname}</td>
-            <td className={UserListTableDataStyle.tdContainer}>{lname}</td>
-            <td className={UserListTableDataStyle.tdContainer}>
-              {position_sh_name}
-            </td>
-            <td className={UserListTableDataStyle.tdEmail}>{email}</td>
-            <td className={UserListTableDataStyle.tdContainer}>{dept_name}</td>
-            <td className={UserListTableDataStyle.tdContainer}>
-              {section_name}
-            </td>
-            <td className={UserListTableDataStyle.tdContainer}>{reg_date}</td>
-            <td className={UserListTableDataStyle.tdDeleteIconContainer}>
+            <input
+              className={UserListTableDataStyle.userNameInput}
+              onClick={() => {
+                setUserViewModal(true);
+                setUserViewModalId(emp_id);
+              }}
+              name="username"
+              value={username}
+              onChange={handleChange}
+            />
+
+            <input
+              className={UserListTableDataStyle.tdContainer}
+              name="fname"
+              value={fname}
+              onChange={handleChange}
+            />
+            <input
+              className={UserListTableDataStyle.tdContainer}
+              name="lname"
+              value={lname}
+              onChange={handleChange}
+            />
+            <input
+              className={UserListTableDataStyle.tdContainer}
+              name="position_sh_name"
+              value={position_sh_name}
+              onChange={handleChange}
+            />
+
+            <input
+              className={UserListTableDataStyle.tdEmail}
+              name="email"
+              value={email}
+              onChange={handleChange}
+            />
+            <input
+              className={UserListTableDataStyle.tdContainer}
+              name="dept_name"
+              value={dept_name}
+              onChange={handleChange}
+            />
+
+            <input
+              className={UserListTableDataStyle.tdContainer}
+              name="section_name"
+              value={section_name}
+              onChange={handleChange}
+            />
+
+            <div className={UserListTableDataStyle.tdContainer}>{reg_date}</div>
+            <div className={UserListTableDataStyle.tdDeleteIconContainer}>
               <span className={UserListTableDataStyle.tdIcon}>
                 <MdDeleteOutline />
               </span>
@@ -101,7 +157,7 @@ const UserListTableData = () => {
               <span className={UserListTableDataStyle.tdIcon}>
                 <IoKey />
               </span>
-            </td>
+            </div>
           </div>
         );
       })}

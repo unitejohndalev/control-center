@@ -3,31 +3,31 @@
 @layer base {
   /*! UserTable style */
   .userTableContainer {
-    @apply w-[100%] border-[.1rem] rounded-md shadow-sm bg-white  gap-x-5 flex flex-col items-center pb-2;
+    @apply w-[100%] border-[.1rem] rounded-md shadow-sm bg-white  gap-x-5 flex flex-col items-center pb-2 ;
   }
   /*! UserList style */
   .userListContainer {
-    @apply flex flex-col w-full px-2 py-2 gap-y-2;
+    @apply flex flex-col w-full gap-y-2 h-[100vh] py-2 px-2;
   }
   .userListChildContainer {
-    @apply flex gap-x-2 h-[84vh];
+    @apply flex h-full gap-x-2;
   }
 
   /*! UserTopBar style */
   .userTopBarContainer {
-    @apply flex justify-between  text-[#24288A] text-[1.5rem] w-full  transition-all ease-linear relative;
+    @apply flex justify-between text-[#24288A] text-[1.5rem] py-3 w-[98%]  transition-all ease-linear relative;
   }
   .addUserButton {
-    @apply relative flex items-end px-2 py-1 font-bold;
+    @apply relative flex font-bold;
   }
   .addUserText {
     @apply absolute top-0 w-[5rem] left-[1.2rem] font-bold text-[.7rem];
   }
   .moreContainer {
-    @apply absolute z-[100] w-[10rem]  flex flex-col top-[1.9rem] px-2 py-1 right-[.5rem] text-[1rem] border-[.1rem] rounded-md shadow-sm bg-white;
+    @apply absolute z-[100] w-[10rem]  flex flex-col top-[2.8rem] px-2 py-1 right-0 text-[1rem] border-[.1rem] rounded-md shadow-sm bg-white;
   }
   .moreIcon {
-    @apply items-end py-1 cursor-pointer;
+    @apply items-end cursor-pointer;
   }
   .moreCategory {
     @apply hover:bg-[#C9E7F9] py-[.1rem] px-[.15rem] rounded-md text-[.8rem] cursor-pointer flex items-center justify-between;
@@ -51,7 +51,7 @@
     items-center  border-[.1rem] rounded-md shadow-sm px-2;
   }
   .searchIcon {
-    @apply items-center justify-center font-medium text-[1.5rem];
+    @apply items-center justify-center font-medium text-[1.5rem] text-[#24288A];
   }
   .searchInputContainer {
     @apply flex items-center justify-center;
@@ -66,7 +66,7 @@
     @apply relative text-[1rem];
   }
   .dropdownContentContainer {
-    @apply px-2 py-1 flex flex-col gap-y-1  absolute  w-[12rem] border-[.1rem] top-[1.7rem] right-0 bg-white rounded-md shadow-sm;
+    @apply px-2 py-1 flex flex-col gap-y-1  absolute  w-[12rem] border-[.1rem] top-[1.7rem] right-[-.5rem] bg-white rounded-md drop-shadow-sm shadow-sm;
   }
   .dropdownContent {
     @apply hover:bg-[#C9E7F9] w-[80%] py-[.1rem] px-[.15rem] rounded-md text-[.8rem] cursor-pointer;
@@ -77,7 +77,7 @@
 
   /* !UserListTableData style */
   .container {
-    @apply w-[98%] border-[.1rem] rounded-md shadow-sm bg-white h-[100vh];
+    @apply w-[98%] border-[.1rem] rounded-md shadow-sm bg-white h-full;
   }
   .trContainer {
     @apply flex w-full  border-b-[.1rem] py-1 gap-x-5 shadow-sm font-medium text-[.8rem];
@@ -94,11 +94,14 @@
   .trDataContainer {
     @apply flex w-full border-b-[.1rem]  gap-x-5 py-1  shadow-sm text-[.8rem] font-medium;
   }
+  .userNameInput {
+    @apply text-blue-700 underline w-[10%] line-clamp-1 text-center outline-none ;
+  }
   .tdContainer {
-    @apply w-[10%] line-clamp-1 text-center;
+    @apply w-[10%] line-clamp-1 text-center outline-none;
   }
   .tdEmail {
-    @apply w-[10%] whitespace-nowrap overflow-hidden overflow-ellipsis text-center;
+    @apply w-[10%] whitespace-nowrap overflow-hidden overflow-ellipsis text-center outline-none;
   }
   .tdDeleteIconContainer {
     @apply w-[10%] flex justify-center items-center gap-x-2;

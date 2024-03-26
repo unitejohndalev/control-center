@@ -25,3 +25,28 @@ export type userData = {
     "Created",
     "Actions",
   ];
+
+  export type userListById = {
+     
+      emp_id: "",
+      username: "",
+      password: "",
+      confirm_password: "",
+      current_password: "",
+      new_password: "",
+      confirm_new_password: "",
+      fname: "",
+      mname: "",
+      lname: "",
+      position_name: "",
+      email: "",
+      title: "",
+      section_name: "",
+      dept_name: "",
+      position_id: 0,
+      dept_id: 0,
+      section_id: 0,
+      status_code: "",
+      img_src: "",
+    
+  }

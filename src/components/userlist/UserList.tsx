@@ -9,7 +9,9 @@ import UserListStyle from "./UserList.module.css";
 const UserList: React.FC = () => {
   return (
     <div className={UserListStyle.userListContainer}>
-      <Navbar />
+      <div className="">
+        <Navbar />
+      </div>
       <div className={UserListStyle.userListChildContainer}>
         <Sidebar />
         <UserTable />

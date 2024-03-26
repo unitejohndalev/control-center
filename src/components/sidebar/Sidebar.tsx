@@ -156,7 +156,7 @@ const Sidebar: React.FC = () => {
             <p
               className={
                 hoverDashBoardText
-                  ? SideBarStyle.contentTextTrue
+                  ? SideBarStyle.contentTextHover
                   : SideBarStyle.contentTextFalse
               }>
               Dashboard
@@ -185,7 +185,7 @@ const Sidebar: React.FC = () => {
             <p
               className={
                 hoverUserText
-                  ? SideBarStyle.contentTextTrue
+                  ? SideBarStyle.contentTextHover
                   : SideBarStyle.contentTextFalse
               }>
               User
@@ -213,7 +213,7 @@ const Sidebar: React.FC = () => {
             <p
               className={
                 hoverProjectText
-                  ? SideBarStyle.contentTextTrue
+                  ? SideBarStyle.contentTextHover
                   : SideBarStyle.contentTextFalse
               }>
               Project
@@ -241,7 +241,7 @@ const Sidebar: React.FC = () => {
             <p
               className={
                 hoverRoleText
-                  ? SideBarStyle.contentTextTrue
+                  ? SideBarStyle.contentTextHover
                   : SideBarStyle.contentTextFalse
               }>
               Role
@@ -278,7 +278,7 @@ const Sidebar: React.FC = () => {
                     otherSidebarText1
                       ? SideBarStyle.contentTextTrue
                       : hoverOthersText
-                      ? SideBarStyle.contentTextTrue
+                      ? SideBarStyle.contentTextHover
                       : SideBarStyle.contentTextFalse
                   }>
                   Others

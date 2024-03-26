@@ -9,7 +9,9 @@ import {
   setDepartmentIconFalse,
   setDepartmentIconToggle,
   setDepartmentIconTrue,
+  setNameIconFalse,
   setNameIconToggle,
+  setNameIconTrue,
   setPositionIconFalse,
   setPositionIconToggle,
   setPositionIconTrue,
@@ -40,308 +42,238 @@ import { useEffect, useRef, useState } from "react";
 const UserSearch = () => {
   const dispatch = useDispatch();
 
-  //showSearchUserInput state
-  const [showSearchUserInput, setShowSearchUserInput] = useState(true);
-
   //store all dispatch in a variable to avoid repetitive calls of dispatch
 
   //showSearchUserInputReducer
-  // const showSearchUserInput = useSelector(
-  //   (state: RootState) =>
-  //     state.showSearchUserInputReducer.showSearchUserInputValue
-  // );
+  const showSearchUserInput = useSelector(
+    (state: RootState) =>
+      state.showSearchUserInputReducer.showSearchUserInputValue
+  );
   const setToggleUserInput = () => dispatch(setShowSearchUserInputToggle());
   const falseUserInput = () => dispatch(setShowSearchUserInputFalse());
   const trueUserInput = () => dispatch(setShowSearchUserInputTrue());
 
   //nameIconReducer
-  // const nameIcon = useSelector(
-  //   (state: RootState) => state.nameIconReducer.nameIconValue
-  // );
+  const nameIcon = useSelector(
+    (state: RootState) => state.nameIconReducer.nameIconValue
+  );
   const setToggleNameIcon = () => dispatch(setNameIconToggle());
-  const falseNameIcon = () => dispatch(setNameIconToggle());
-  const trueNameIcon = () => dispatch(setNameIconToggle());
+  const falseNameIcon = () => dispatch(setNameIconFalse());
+  const trueNameIcon = () => dispatch(setNameIconTrue());
 
   //showNameInputReducer
-  // const showNameInput = useSelector(
-  //   (state: RootState) =>
-  //     state.showNameInputReducer.showNameInputValue
-  // );
+  const showNameInput = useSelector(
+    (state: RootState) => state.showNameInputReducer.showNameInputValue
+  );
   const setToggleNameInput = () => dispatch(setShowNameInputToggle());
   const falseNameInput = () => dispatch(setShowNameInputFalse());
   const trueNameInput = () => dispatch(setShowNameInputTrue());
 
   //positionIconReducer
-  // const positionIcon = useSelector(
-  //   (state: RootState) =>
-  //     state.positionIconReducer.positionIconValue
-  // );
+  const positionIcon = useSelector(
+    (state: RootState) => state.positionIconReducer.positionIconValue
+  );
   const setTogglePositionIcon = () => dispatch(setPositionIconToggle());
   const falsePositionIcon = () => dispatch(setPositionIconFalse());
   const truePositionIcon = () => dispatch(setPositionIconTrue());
 
   //showPositionInputReducer
-  // const showPositionInput = useSelector(
-  //   (state: RootState) =>
-  //     state.showPositionInputReducer.showPositionInputValue
-  // );
+  const showPositionInput = useSelector(
+    (state: RootState) => state.showPositionInputReducer.showPositionInputValue
+  );
   const setTogglePositionInput = () => dispatch(setShowPositionInputToggle());
   const falsePositionInput = () => dispatch(setShowPositionInputFalse());
   const truePositionInput = () => dispatch(setShowPositionInputTrue());
 
   //businessIconReducer
-  // const businessIcon = useSelector(
-  //   (state: RootState) =>
-  //     state.businessIconReducer.businessIconValue
-  // );
+  const businessIcon = useSelector(
+    (state: RootState) => state.businessIconReducer.businessIconValue
+  );
   const setToggleBusinessIcon = () => dispatch(setBusinessIconToggle());
   const falseBusinessIcon = () => dispatch(setBusinessIconFalse());
   const trueBusinessIcon = () => dispatch(setBusinessIconTrue());
 
   //showBusinessInputReducer
-  // const showBusinessInput = useSelector(
-  //   (state: RootState) =>
-  //     state.showBusinessInputReducer.showBusinessInputValue
-  // );
+  const showBusinessInput = useSelector(
+    (state: RootState) => state.showBusinessInputReducer.showBusinessInputValue
+  );
   const setToggleBusinessInput = () => dispatch(setShowBusinessInputToggle());
   const falseBusinessInput = () => dispatch(setShowBusinessInputFalse());
   const trueBusinessInput = () => dispatch(setShowBusinessInputTrue());
 
   //departmentIconReducer
-  // const departmentIcon = useSelector(
-  //   (state: RootState) =>
-  //     state.departmentIconReducer.departmentIconValue
-  // );
+  const departmentIcon = useSelector(
+    (state: RootState) => state.departmentIconReducer.departmentIconValue
+  );
   const setToggleDepartmentIcon = () => dispatch(setDepartmentIconToggle());
   const falseDepartmentIcon = () => dispatch(setDepartmentIconFalse());
   const trueDepartmentIcon = () => dispatch(setDepartmentIconTrue());
 
   //showDepartmentInputReducer
-  // const showDepartmentInput = useSelector(
-  //   (state: RootState) =>
-  //     state.showDepartmentInputReducer.showDepartmentInputValue
-  // );
-  const setToggleDepartmentInput = () => dispatch(setShowDepartmentInputToggle());
+  const showDepartmentInput = useSelector(
+    (state: RootState) =>
+      state.showDepartmentInputReducer.showDepartmentInputValue
+  );
+  const setToggleDepartmentInput = () =>
+    dispatch(setShowDepartmentInputToggle());
   const falseDepartmentInput = () => dispatch(setShowDepartmentInputFalse());
   const trueDepartmentInput = () => dispatch(setShowDepartmentInputTrue());
-  useEffect(() => {
-    //showSearchUserInputReducer
-    setToggleUserInput();
-    falseUserInput();
-    trueUserInput();
 
-    //nameIconReducer
-    setToggleNameIcon();
-    falseNameIcon();
-    trueNameIcon();
-
-    //showNameInputReducer
-    setToggleNameInput();
-    falseNameInput();
-    trueNameInput();
-
-    //positionIconReducer
-    setTogglePositionIcon();
-    falsePositionIcon();
-    truePositionIcon();
-
-    //showPositionInputReducer
-    setTogglePositionInput();
-    falsePositionInput();
-    truePositionInput();
-
-    //businessIconReducer
-    setToggleBusinessIcon();
-    falseBusinessIcon();
-    trueBusinessIcon();
-
-    //showBusinessInputReducer
-    setToggleBusinessInput();
-    falseBusinessInput();
-    trueBusinessInput();
-
-    //departmentIconReducer
-    setToggleDepartmentIcon();
-    falseDepartmentIcon();
-    trueDepartmentIcon();
-
-    //showDepartmentInputReducer
-    setToggleDepartmentInput();
-    falseDepartmentInput();
-    trueDepartmentInput();
-  }, []);
-  //NameIcon state
-  const [nameIcon, setNameIcon] = useState(false);
-  //showNameInput state
-  const [showNameInput, setShowNameInput] = useState(false);
 
   //toggleName function
   const toggleName = () => {
-    setShowNameInput((prev) => !prev);
-    setShowSearchUserInput((prev) => !prev);
-
-    setNameIcon((prev) => !prev);
+    setToggleNameInput();
+    setToggleUserInput();
+    setToggleNameIcon();
     if (
       showPositionInput ||
       showBusinessInput ||
       showDepartmentInput === true
     ) {
-      setShowSearchUserInput(false);
-
-      setShowBusinessInput(false);
-      setShowPositionInput(false);
-      setShowDepartmentInput(false);
-      setShowNameInput(true);
-      setNameIcon(true);
-      setPositionIcon(false);
-      setBusinessIcon(false);
-      setDepartmentIcon(false);
+      falseUserInput();
+      falseBusinessInput();
+      falsePositionInput();
+      falseDepartmentInput();
+      trueNameInput();
+      trueNameIcon();
+      falsePositionIcon();
+      falseBusinessIcon();
+      falseDepartmentIcon();
     }
   };
   //nameIconToggle function
   const toggleIconName = () => {
-    setNameIcon((prev) => !prev);
+    setToggleNameIcon();
     if (
       showPositionInput ||
       showBusinessInput ||
       showDepartmentInput === true
     ) {
-      setShowSearchUserInput(false);
+      falseUserInput();
     }
   };
 
   //nameIconToggleRemove function
   const nameIconToggleRemove = () => {
-    setShowSearchUserInput(true);
+    trueUserInput();
 
-    setShowNameInput(false);
+    falseNameInput();
   };
   //nameIconToggleAdd function
   const nameIconToggleAdd = () => {
-    setShowSearchUserInput(false);
+    falseUserInput();
 
-    setShowNameInput(true);
+    trueNameInput();
   };
 
-  //positionIcon state
-  const [positionIcon, setPositionIcon] = useState(false);
-  //showPositionInput state
-  const [showPositionInput, setShowPositionInput] = useState(false);
+
   //togglePosition function
   const togglePosition = () => {
-    setShowPositionInput((prev) => !prev);
-    setShowSearchUserInput((prev) => !prev);
-
-    setPositionIcon((prev) => !prev);
-
+    setTogglePositionInput();
+    setToggleUserInput();
+    setTogglePositionIcon();
     if (showNameInput || showBusinessInput || showDepartmentInput === true) {
-      setShowSearchUserInput(false);
-      setShowBusinessInput(false);
-      setShowDepartmentInput(false);
-      setShowNameInput(false);
-      setShowPositionInput(true);
-
-      setNameIcon(false);
-      setPositionIcon(true);
-      setBusinessIcon(false);
-      setDepartmentIcon(false);
+      falseUserInput();
+      falseBusinessInput();
+      falseDepartmentInput();
+      falseNameInput();
+      truePositionInput();
+      falseNameIcon();
+      truePositionIcon();
+      falseBusinessIcon();
+      falseDepartmentIcon();
     }
   };
   //togglePositionInput function
   const togglePositionInput = () => {
-    setPositionIcon((prev) => !prev);
+    setTogglePositionIcon();
     if (showNameInput || showBusinessInput || showDepartmentInput === true) {
-      setShowSearchUserInput(false);
+      falseUserInput();
     }
   };
+  
   //positionIconToggleRemove function
   const positionIconToggleRemove = () => {
-    setShowSearchUserInput(true);
-    setShowPositionInput(false);
+    trueUserInput();
+    falsePositionInput();
   };
   //positionIconToggleAdd function
   const positionIconToggleAdd = () => {
-    setShowSearchUserInput(false);
-    setShowPositionInput(true);
+    falseUserInput();
+    truePositionInput();
   };
 
-  //businessIcon state
-  const [businessIcon, setBusinessIcon] = useState(false);
-  //showBusinessInput state
-  const [showBusinessInput, setShowBusinessInput] = useState(false);
+ 
   //togglePosition function
   const toggleBusiness = () => {
-    setShowSearchUserInput((prev) => !prev);
-    setBusinessIcon((prev) => !prev);
-
+    setToggleUserInput();
+    setToggleBusinessIcon();
+    setToggleBusinessInput()
     if (showNameInput || showPositionInput || showDepartmentInput === true) {
-      setShowSearchUserInput(false);
-      setShowDepartmentInput(false);
-      setShowPositionInput(false);
-      setShowNameInput(false);
-      setShowBusinessInput(true);
-      setNameIcon(false);
-      setPositionIcon(false);
-      setBusinessIcon(true);
-      setDepartmentIcon(false);
+      falseUserInput();
+      falseDepartmentInput();
+      falsePositionInput();
+      falseNameInput();
+      trueBusinessInput();
+      falseNameIcon();
+      falsePositionIcon();
+      trueBusinessIcon();
+      falseDepartmentIcon();
     }
   };
   //toggleBusinessInput function
   const toggleBusinessInput = () => {
-    setBusinessIcon((prev) => !prev);
+    setToggleBusinessIcon();
     if (showNameInput || showPositionInput || showDepartmentInput === true) {
-      setShowSearchUserInput(false);
+      falseUserInput();
     }
   };
   //businessIconToggleRemove function
   const businessIconToggleRemove = () => {
-    setShowSearchUserInput(true);
-    setShowBusinessInput(false);
+    trueUserInput();
+    falseBusinessInput();
   };
   //businessIconToggleAdd function
   const businessIconToggleAdd = () => {
-    setShowSearchUserInput(false);
-    setShowBusinessInput(true);
+    falseUserInput();
+    trueBusinessInput();
   };
 
-  //departmentIcon state
-  const [departmentIcon, setDepartmentIcon] = useState(false);
-  //showDepartmentInput state
-  const [showDepartmentInput, setShowDepartmentInput] = useState(false);
+
   //toggleDepartment function
   const toggleDepartment = () => {
-    setShowDepartmentInput((prev) => !prev);
-    setShowSearchUserInput((prev) => !prev);
-    setDepartmentIcon((prev) => !prev);
+    setToggleDepartmentInput();
+    setToggleUserInput();
+    setToggleDepartmentIcon();
 
     if (showNameInput || showBusinessInput || showPositionInput === true) {
-      setShowSearchUserInput(false);
-      setShowBusinessInput(false);
-      setShowPositionInput(false);
-      setShowNameInput(false);
-      setShowDepartmentInput(true);
-      setNameIcon(false);
-      setPositionIcon(false);
-      setBusinessIcon(false);
-      setDepartmentIcon(true);
+      falseUserInput();
+      falseBusinessInput();
+      falsePositionInput();
+      falseNameInput();
+      trueDepartmentInput();
+      falseNameIcon();
+      falsePositionIcon();
+      falseBusinessIcon();
+      trueDepartmentIcon();
     }
   };
   //toggleDepartmentInput function
   const toggleDepartmentInput = () => {
-    setDepartmentIcon((prev) => !prev);
+    setToggleDepartmentIcon();
     if (showNameInput || showBusinessInput || showPositionInput === true) {
-      setShowSearchUserInput(false);
+      falseUserInput();
     }
   };
   //departmentIconToggleRemove function
   const departmentIconToggleRemove = () => {
-    setShowSearchUserInput(true);
-    setShowDepartmentInput(false);
+    trueUserInput();
+    falseDepartmentInput();
   };
   //departmentIconToggleAdd function
   const departmentIconToggleAdd = () => {
-    setShowSearchUserInput(false);
-    setShowDepartmentInput(true);
+    falseUserInput();
+    trueDepartmentInput();
   };
 
   //topBar value

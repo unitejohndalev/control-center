@@ -1,5 +1,5 @@
 // userListState.ts
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 //userList Slice
 const userListSlice = createSlice({
@@ -7,6 +7,28 @@ const userListSlice = createSlice({
   initialState: {
     userList: [],
     isLoading: false,
+    userInfo: {
+      emp_id: "",
+      username: "",
+      password: "",
+      confirm_password: "",
+      current_password: "",
+      new_password: "",
+      confirm_new_password: "",
+      fname: "",
+      mname: "",
+      lname: "",
+      position_name: "",
+      email: "",
+      title: "",
+      section_name: "",
+      dept_name: "",
+      position_id: 0,
+      dept_id: 0,
+      section_id: 0,
+      status_code: "",
+      img_src: "",
+    },
   },
   reducers: {
     getUserListFetch: (state) => {
@@ -16,9 +38,13 @@ const userListSlice = createSlice({
       state.userList = action.payload;
       state.isLoading = false;
     },
+    setUserField: (state, action) => {
+      return { ...state, ...action.payload };
+    },
   },
 });
-export const { getUserListFetch, getUserListSuccess } = userListSlice.actions;
+export const { getUserListFetch, getUserListSuccess, setUserField } =
+  userListSlice.actions;
 export const userListReducer = userListSlice.reducer;
 
 //showTopBar Slice
@@ -313,3 +339,6 @@ export const {
   setShowDepartmentInputTrue,
 } = showDepartmentInputSlice.actions;
 export const showDepartmentInputReducer = showDepartmentInputSlice.reducer;
+
+
+
