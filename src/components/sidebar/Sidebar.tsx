@@ -303,6 +303,7 @@ const Sidebar: React.FC = () => {
               </div>
             </div>
           )}
+          
           {otherSidebarText2 && (
             <div className={SideBarStyle.text2Container}>
               <div className={SideBarStyle.text2InnerContainer}>

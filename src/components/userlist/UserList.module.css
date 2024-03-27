@@ -92,7 +92,7 @@
     @apply w-[10%] line-clamp-1 text-center;
   }
   .trDataContainer {
-    @apply flex w-full items-center  border-[.1rem]  border-t-transparent border-r-transparent border-l-transparent   relative  gap-x-5 py-[.3rem]  shadow-sm text-[.8rem] font-medium transition-all ease-linear;
+    @apply flex w-full items-center  border-[.1rem]  border-t-transparent border-r-transparent border-l-transparent  gap-x-5 py-[.3rem]  shadow-sm text-[.8rem] font-medium transition-all ease-linear;
   }
   .userNameInput {
     @apply text-blue-700 underline w-[10%] line-clamp-1 text-center outline-none ;

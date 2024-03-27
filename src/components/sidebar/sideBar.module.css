@@ -50,7 +50,7 @@
     @apply custom-scrollbar;
   }
   .text2Container {
-    @apply absolute left-[4rem] bg-white flex  justify-center  border-[.1rem] rounded-md shadow-sm px-2 py-2;
+    @apply absolute left-[4rem] z-[101] bg-white flex  justify-center  border-[.1rem]  rounded-md shadow-sm px-2 py-2;
   }
   .text2InnerContainer {
     @apply w-[10rem] h-[160px] overflow-y-auto  pr-1 py-2 flex flex-col gap-y-1;
