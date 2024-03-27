@@ -15,7 +15,7 @@
 
   /*! UserTopBar style */
   .userTopBarContainer {
-    @apply flex justify-between text-[#24288A] text-[1.5rem] py-3 w-[98%]  transition-all ease-linear relative;
+    @apply flex justify-between text-[#24288A] text-[1.5rem] py-3 w-[98%]  transition-all ease-linear relative ;
   }
   .addUserButton {
     @apply relative flex font-bold;
@@ -66,7 +66,7 @@
     @apply relative text-[1rem];
   }
   .dropdownContentContainer {
-    @apply px-2 py-1 flex flex-col gap-y-1  absolute  w-[12rem] border-[.1rem] top-[1.7rem] right-[-.5rem] bg-white rounded-md drop-shadow-sm shadow-sm;
+    @apply px-2 py-1 flex flex-col gap-y-1  absolute z-[100]  w-[12rem] border-[.1rem] top-[1.7rem] right-[-.5rem] bg-white rounded-md drop-shadow-sm shadow-sm;
   }
   .dropdownContent {
     @apply hover:bg-[#C9E7F9] w-[80%] py-[.1rem] px-[.15rem] rounded-md text-[.8rem] cursor-pointer;
@@ -92,24 +92,24 @@
     @apply w-[10%] line-clamp-1 text-center;
   }
   .trDataContainer {
-    @apply flex w-full border-b-[.1rem]  gap-x-5 py-1  shadow-sm text-[.8rem] font-medium;
+    @apply flex w-full items-center  border-[.1rem]  border-t-transparent border-r-transparent border-l-transparent   relative  gap-x-5 py-[.3rem]  shadow-sm text-[.8rem] font-medium transition-all ease-linear;
   }
   .userNameInput {
     @apply text-blue-700 underline w-[10%] line-clamp-1 text-center outline-none ;
   }
   .tdContainer {
-    @apply w-[10%] line-clamp-1 text-center outline-none;
+    @apply w-[10%] line-clamp-1 text-center outline-none relative ;
   }
   .tdEmail {
     @apply w-[10%] whitespace-nowrap overflow-hidden overflow-ellipsis text-center outline-none;
   }
   .tdDeleteIconContainer {
-    @apply w-[10%] flex justify-center items-center gap-x-2;
+    @apply w-[10%] flex justify-center items-center gap-x-2 transition-all ease-linear;
   }
   .lineDiv {
     @apply h-[1rem] border-[.01rem] border-[#E5E7EB];
   }
   .tdIcon {
-    @apply text-[1.3rem] cursor-pointer text-[#78797c];
+    @apply text-[1.3rem] cursor-pointer text-[#78797c] transition-all ease-linear;
   }
 }
