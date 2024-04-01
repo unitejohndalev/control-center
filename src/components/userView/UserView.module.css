@@ -1,0 +1,7 @@
+/* !UserView Styles */
+
+/* UserView SideBar Style */
+
+.sidebar_Container {
+    @apply border-[.1rem] rounded-md shadow-sm bg-white w-[15%]  px-2 py-1 flex flex-col gap-y-1 
+}

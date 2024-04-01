@@ -6,10 +6,7 @@ import {
 } from "../../../redux/state/userListState";
 import { useEffect, useRef, useState } from "react";
 import { MdOutlineCancel, MdOutlineSaveAs } from "react-icons/md";
-import { IoKey } from "react-icons/io5";
 import { userData } from "../userListTypes";
-import { MdSettingsAccessibility } from "react-icons/md";
-import { FaBoltLightning } from "react-icons/fa6";
 import { CiEdit, CiSettings } from "react-icons/ci";
 
 //import module style css
@@ -17,9 +14,9 @@ import UserListTableDataStyle from "../UserList.module.css";
 
 //import raw data for table head
 import { thData } from "../userListTypes";
-import UserView from "../../userView/UserView";
 
-const UserListTableData = () => {
+
+const UserListTableData = ({ setUserViewModal, setUserViewModalId }) => {
   const dispatch = useDispatch();
 
   //userlist side effect handler
@@ -32,9 +29,7 @@ const UserListTableData = () => {
     (state: RootState) => state.userListReducer.userList
   );
 
-  //show userview modal
-  const [userViewModal, setUserViewModal] = useState(false);
-  const [userViewModalId, setUserViewModalId] = useState<number>();
+
 
   //get all empty string for user input
   const userInputById = useSelector(
@@ -164,12 +159,7 @@ const UserListTableData = () => {
             {quickEdit && dpId === emp_id ? (
               <>
                 <div className={UserListTableDataStyle.thInputContainer}>
-                  <input
-                    type="checkbox"
-                    name=""
-                    id=""
-                    className={UserListTableDataStyle.thInput}
-                  />
+                  <CiEdit className={UserListTableDataStyle.tdIcon} />
                 </div>
                 <input
                   className={UserListTableDataStyle.userNameInput}
@@ -421,18 +411,7 @@ const UserListTableData = () => {
           </div>
         );
       })}
-      <div className="">
-        {userList.map((user: userData, idx) => {
-          const { emp_id } = user;
-          return (
-            <div key={idx}>
-              {userViewModal && userViewModalId === emp_id && (
-                <UserView empId={emp_id} />
-              )}
-            </div>
-          );
-        })}
-      </div>
+     
     </div>
   );
 };

@@ -9,9 +9,10 @@ import { getUserInfoFetch } from "../../redux/state/userInfoState";
 import { RootState } from "../../redux/store/store";
 type UserListType = {
   empId: number;
+  setUserViewModalClose: () => void;
 };
 
-const UserView: React.FC<UserListType> = ({ empId }) => {
+const UserView: React.FC<UserListType> = ({ empId, setUserViewModalClose }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,9 +21,7 @@ const UserView: React.FC<UserListType> = ({ empId }) => {
   const userInfoData: any = useSelector<RootState, typeof userInfoData>(
     (state) => state.userInfoReducer.userView
   );
-  console.log(userInfoData);
 
-  userInfoData;
   const {
     username,
     fname,
@@ -36,7 +35,7 @@ const UserView: React.FC<UserListType> = ({ empId }) => {
   } = userInfoData;
 
   return (
-    <div className=" border-[.1rem] rounded-md shadow-sm bg-white  gap-x-5 flex flex-col items-center pb-2">
+    <div className="">
       <p>{emp_id}</p>
       <p>{username}</p>
       <p>{fname}</p>
@@ -47,6 +46,14 @@ const UserView: React.FC<UserListType> = ({ empId }) => {
       <p>{section_name}</p>
       <p>{reg_date}</p>
       {/* <p>{userInfoData}</p> */}
+      <div className="flex justify-end w-full gap-x-5">
+        <span className="cursor-pointer" onClick={setUserViewModalClose}>
+          Cancel
+        </span>
+        <span className="cursor-pointer" >
+          Update
+        </span>
+      </div>
     </div>
   );
 };

@@ -27,8 +27,12 @@ import {
 
 import SideBarStyle from "./sideBar.module.css";
 
+import { motion } from "framer-motion";
+
+
 //import raw data for sidebar
 import { SideBarMoreSectionData } from "./sideBarTypes";
+import { sidebarAni } from "../../framer/variants";
 
 const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
@@ -113,7 +117,8 @@ const Sidebar: React.FC = () => {
   }, [moreContainerRef, dispatch]);
 
   return (
-    <div
+    <motion.div
+      variants={sidebarAni}
       className={
         sideBarText
           ? SideBarStyle.sideBarWidthMax
@@ -303,7 +308,7 @@ const Sidebar: React.FC = () => {
               </div>
             </div>
           )}
-          
+
           {otherSidebarText2 && (
             <div className={SideBarStyle.text2Container}>
               <div className={SideBarStyle.text2InnerContainer}>
@@ -319,7 +324,7 @@ const Sidebar: React.FC = () => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
